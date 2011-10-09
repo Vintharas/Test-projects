@@ -6,7 +6,7 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>5dcb1316-5e0d-4c8b-a505-20257044bda7</ProjectGuid>
+    <ProjectGuid>{AD6ACE93-8521-40A7-9537-091C135B81BC}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SportStore.WebUI.UnitTests</RootNamespace>
@@ -33,6 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -45,6 +46,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SportStore.Domain\SportStore.Domain.csproj">
+      <Project>{5AC638DE-7D64-4780-A943-8A31666422FC}</Project>
+      <Name>SportStore.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SportStore.WebUI\SportStore.WebUI.csproj">
+      <Project>{3455AA25-A35C-48D4-9A95-A61F4F691F36}</Project>
+      <Name>SportStore.WebUI</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

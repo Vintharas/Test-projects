@@ -1,5 +1,10 @@
-﻿using System.Web.Mvc;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Web.Mvc;
 using Ninject;
+using SportStore.Domain.Concrete;
+using SportStore.Domain.Entities;
+using SportStore.Domain.Interfaces;
 
 namespace SportStore.WebUI.Infrastructure
 {
@@ -37,7 +42,7 @@ namespace SportStore.WebUI.Infrastructure
         /// </summary>
         private void SetupBindings()
         {
-        
+            ninjectKernel.Bind<IProductRepository>().To<EFProductRepository>();
         }
     }
 }

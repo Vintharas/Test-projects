@@ -1,7 +1,47 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SportStore.WebUI", "SportStore.WebUI\SportStore.WebUI.csproj", "{3455AA25-A35C-48D4-9A95-A61F4F691F36}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SportStore.Domain", "SportStore.Domain\SportStore.Domain.csproj", "{5AC638DE-7D64-4780-A943-8A31666422FC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SportStore.WebUI.UnitTests", "SportStore.WebUI.UnitTests\SportStore.WebUI.UnitTests.csproj", "{AD6ACE93-8521-40A7-9537-091C135B81BC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{07BBDA48-A967-479B-AC25-A85B54B6CE97}"
+	ProjectSection(SolutionItems) = preProject
+		Local.testsettings = Local.testsettings
+		SportStore.vsmdi = SportStore.vsmdi
+		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SportStore.Domain.UnitTests", "SportStore.Domain.UnitTests\SportStore.Domain.UnitTests.csproj", "{2D46AA2E-0FEA-4E9F-9439-47B8A70E9E7C}"
+EndProject
 Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = SportStore.vsmdi
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3455AA25-A35C-48D4-9A95-A61F4F691F36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3455AA25-A35C-48D4-9A95-A61F4F691F36}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3455AA25-A35C-48D4-9A95-A61F4F691F36}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3455AA25-A35C-48D4-9A95-A61F4F691F36}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5AC638DE-7D64-4780-A943-8A31666422FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5AC638DE-7D64-4780-A943-8A31666422FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5AC638DE-7D64-4780-A943-8A31666422FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5AC638DE-7D64-4780-A943-8A31666422FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD6ACE93-8521-40A7-9537-091C135B81BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD6ACE93-8521-40A7-9537-091C135B81BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD6ACE93-8521-40A7-9537-091C135B81BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD6ACE93-8521-40A7-9537-091C135B81BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D46AA2E-0FEA-4E9F-9439-47B8A70E9E7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D46AA2E-0FEA-4E9F-9439-47B8A70E9E7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D46AA2E-0FEA-4E9F-9439-47B8A70E9E7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D46AA2E-0FEA-4E9F-9439-47B8A70E9E7C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
