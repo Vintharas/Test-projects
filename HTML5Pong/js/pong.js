@@ -78,13 +78,13 @@ function moveBall(){
 		ball.directionY = 1;
 	}
 	// check right edge
-	if (ball.x + ball.speed*ball.directionX > playgroundWidth - ballWidth){
+	if (ball.x + ball.speed*ball.directionX >= playgroundWidth - ballWidth){
 		playerBLost();
 		resetBall(ball);
 		ball.directionX = -1;
 	}
 	// check left edge
-	if (ball.x + ball.speed*ball.directionX < 0){
+	if (ball.x + ball.speed*ball.directionX <= 0){
 		playerALost();
 		resetBall(ball);
 		ball.directionX = 1;
