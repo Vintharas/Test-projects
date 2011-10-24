@@ -1,0 +1,31 @@
+body{
+	background: #aaa;
+}
+/* defines styles for each card */
+.card{
+	width: 80px;
+	height: 120px;
+	margin: 20px;
+	background: #efefef;
+	position: absolute;
+	-webkit-transition: all 1s linear;
+}
+
+/* set the card to corresponding playing card graphics. */
+.cardAK{
+	background: url(../images/AK.png);
+}
+
+.cardAQ{
+	background: url(../images/AQ.png);
+}
+
+/* rotate the applied DOM element 90 degrees */
+.rotateRight {
+	-webkit-transform: rotate3d(0, 0, 1, 90deg);
+}
+
+/* move and scale up the applied DOM element */
+.moveAndScale{
+	-webkit-transform: translate3d(150px, 150px, 0) scale3d(1.5, 1.5, 1);
+}
