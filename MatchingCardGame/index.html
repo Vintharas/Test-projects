@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Getting familiar with CSS3 Transition</title>
-		<link rel="stylesheet" href="css/css3transitions.css" />
+		<link rel="stylesheet" href="css/css3flip.css" />
 	</head>
 	<body>
 		<header>
@@ -11,18 +11,33 @@
 		</header>
 		<section id="game">
 			<div id="cards">
-				<div id="card1" class="card cardAK"></div>
-				<div id="card2" class="card cardAQ"></div>
+				<div class="card">
+					<div class="face front"></div>
+					<div class="face back cardAK"></div>
+				</div>
+				<div class="card">
+					<div class="face front"></div>
+					<div class="face back cardAQ"></div>
+				</div>
 			</div> <!-- # cards -->
 		</section>  <!-- # game -->
 		<footer>
 			<p> This is an example of transitioning cards.</p>
-		</footer>
+		vi</footer>
 		<script src="js/jquery-1.6.4.min.js"></script>
 		<script>
 			$(function(){
-				$("#card1").addClass("moveAndScale");
-				$("#card2").addClass("rotateRight");
+				// Ex1. Introduction to css3 transitions (css3transitions.css)
+				// $("#card1").addClass("moveAndScale");
+				// $("#card2").addClass("rotateRight");
+				// Ex2. Flipping a card (css3flip.css)
+				$("#cards").children().each(function(index){
+					//listen the click event on each card div
+					$(this).click(function(){
+						// add the class "card flipped".
+						$(this).toggleClass("card-flipped");
+					});
+				});
 			});
 		</script>
 	</body>

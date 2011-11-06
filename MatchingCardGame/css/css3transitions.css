@@ -22,7 +22,7 @@ body{
 
 /* rotate the applied DOM element 90 degrees */
 .rotateRight {
-	-webkit-transform: rotate3d(0, 0, 1, 90deg);
+	-webkit-transform: rotate3d(2, 3, 5, 360deg);
 }
 
 /* move and scale up the applied DOM element */
