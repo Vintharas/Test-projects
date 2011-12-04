@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFCodeFirst_Chapter2", "EFCodeFirst_Chapter2\EFCodeFirst_Chapter2.csproj", "{3092BA1B-6724-4564-B49F-17F406A1186D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFCodeFirst_Chapter2.Tests", "EFCodeFirst_Chapter2.Tests\EFCodeFirst_Chapter2.Tests.csproj", "{7255DF14-AE7C-4567-B6A3-386F9CFA57FF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3092BA1B-6724-4564-B49F-17F406A1186D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3092BA1B-6724-4564-B49F-17F406A1186D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3092BA1B-6724-4564-B49F-17F406A1186D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3092BA1B-6724-4564-B49F-17F406A1186D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7255DF14-AE7C-4567-B6A3-386F9CFA57FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7255DF14-AE7C-4567-B6A3-386F9CFA57FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7255DF14-AE7C-4567-B6A3-386F9CFA57FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7255DF14-AE7C-4567-B6A3-386F9CFA57FF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
