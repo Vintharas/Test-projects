@@ -70,9 +70,10 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\Album.cs" />
+    <Compile Include="Models\Artist.cs" />
+    <Compile Include="Models\Genre.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Samples\AlbumList\Album.cs" />
-    <Compile Include="Samples\AlbumList\AlbumsController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -151,12 +152,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Store\List.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Albums\ListWeaklyTyped.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Albums\ListStronglyTyped.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Store\Index.cshtml" />
