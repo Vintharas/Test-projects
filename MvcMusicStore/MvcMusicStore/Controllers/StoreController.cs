@@ -11,25 +11,40 @@ namespace MvcMusicStore.Controllers
         //
         // GET: /Store/
 
-        public ActionResult Index()
+        public string Index()
         {
-            return View();
+            return "Hello from Store.Index()";
         }
 
-        public ActionResult Browse()
+        /// <summary>
+        /// GET: /Store/Browse?genre=?Disco
+        /// </summary>
+        /// <returns></returns>
+        public string Browse(string genre)
         {
-            return View();
+            string result = HttpUtility.HtmlEncode("Store.Browse(), Genre = " + genre);
+            return result;
         }
 
-        public ActionResult Details()
+        /// <summary>
+        /// GET: /Store/Details/id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public string Details(int id)
         {
-            return View();
+            return HttpUtility.HtmlEncode("Store.Details(), Id = " + id);
         }
 
         public ActionResult List()
         {
             var albums = new List<string> {"lalala", "lalalA", "lalalla"};
             return View(albums);
+        }
+
+        public ActionResult Edit(int id)
+        {
+            return View();
         }
 
     }
