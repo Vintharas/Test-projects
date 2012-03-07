@@ -72,8 +72,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Mechanics\Animation.cs" />
+    <Compile Include="Model\Enemy.cs" />
     <Compile Include="Model\ParallaxingBackground.cs" />
     <Compile Include="Model\Player.cs" />
+    <Compile Include="Model\Projectile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />
