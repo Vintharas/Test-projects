@@ -26,6 +26,7 @@ namespace Shooter.Model
             Health = 10;
             Speed = 6f;
             Value = 100;
+            Damage = 10;
         }
 
         public void Update(GameTime gameTime)

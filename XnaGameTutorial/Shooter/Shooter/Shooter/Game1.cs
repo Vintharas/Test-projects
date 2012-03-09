@@ -49,6 +49,10 @@ namespace Shooter
         private Texture2D explosionTexture;
         private List<Animation> explosions;
  
+        // SCORE
+        private int score;
+        private SpriteFont scoreFont;
+
         // BACKGROUND
         private Texture2D mainBackground;
         // Parallaxing layers
@@ -88,6 +92,8 @@ namespace Shooter
             fireTime = TimeSpan.FromSeconds(.15f);
             // Explosions
             explosions = new List<Animation>();
+            // Score
+            score = 0;
             // Background
             bgLayer1 = new ParallaxingBackground();
             bgLayer2 = new ParallaxingBackground();
@@ -125,6 +131,8 @@ namespace Shooter
             projectileTexture = Content.Load<Texture2D>("laser");
             // Load explosion content
             explosionTexture = Content.Load<Texture2D>("explosion");
+            // Load score font
+            scoreFont = Content.Load<SpriteFont>("gameFont");
             // Load background resources
             bgLayer1.Initialize(Content, "bgLayer1", GraphicsDevice.Viewport.Width, -1);
             bgLayer2.Initialize(Content, "bgLayer2", GraphicsDevice.Viewport.Width, -2);
@@ -210,6 +218,12 @@ namespace Shooter
                 AddProjectile(player.Position + new Vector2(player.Width/2, 0));
             }
             //laserSound.Play(.5f, 0f, 0f);
+            // Reset score if player health goes to zero
+            if (player.Health <= 0)
+            {
+                player.Health = 100;
+                score = 0;
+            }
         }
 
         private void UpdateBackground(GameTime gameTime)
@@ -236,6 +250,7 @@ namespace Shooter
                     {
                         AddExplosion(enemies[i].Position);
                         explosionSound.Play(.1f, 0f, 0f);
+                        score += enemies[i].Value;
                     }
                     enemies.RemoveAt(i);
                 }
@@ -372,6 +387,16 @@ namespace Shooter
             // Explosions
             foreach (var explosion in explosions)
                 explosion.Draw(spriteBatch);
+            // Score
+            spriteBatch.DrawString(scoreFont, "score: " + score,
+                                   new Vector2(GraphicsDevice.Viewport.TitleSafeArea.X,
+                                               GraphicsDevice.Viewport.TitleSafeArea.Y),
+                                   Color.White);
+            // Draw the player health
+            spriteBatch.DrawString(scoreFont, "health: " + player.Health,
+                                   new Vector2(GraphicsDevice.Viewport.TitleSafeArea.X,
+                                               GraphicsDevice.Viewport.TitleSafeArea.Y + 30),
+                                   Color.White);
             // Player
             player.Draw(spriteBatch);
             spriteBatch.End();
