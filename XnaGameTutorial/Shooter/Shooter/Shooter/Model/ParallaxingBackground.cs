@@ -5,31 +5,39 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Shooter.Model
 {
-    public class ParallaxingBackground
+    public class ParallaxingBackground : DrawableGameComponent
     {
         private Texture2D texture;  // The image representing the parallaxing background
         private Vector2[] positions;  // An array of positions of the parallaxing background
         private int speed;  // The speed at which the background is moving
+        private string texturePath;
+        private SpriteBatch spriteBatch;
 
-        public void Initialize(ContentManager content,
-            String texturePath, int screenWidth, int speed)
+        public ParallaxingBackground(Game game, int speed, string texturePath) : base(game)
         {
-            texture = content.Load<Texture2D>(texturePath);
             this.speed = speed;
+            this.texturePath = texturePath;
+        }
 
+        protected override void LoadContent()
+        {
+            spriteBatch = (SpriteBatch) Game.Services.GetService(typeof (SpriteBatch));
+            texture = Game.Content.Load<Texture2D>(texturePath);
+            this.speed = speed;
             // If we divide the screen with the texture width,
             // then we can determine the number of tiles needed.
             // We add 1 to it so that we won't have a gap in the tiling
-            positions = new Vector2[screenWidth/texture.Width +1];
+            positions = new Vector2[GraphicsDevice.Viewport.Width / texture.Width + 1];
             // Set the initial positions of the parallaxing background
             for (int i = 0; i < positions.Length; i++)
             {
                 // We need the tiles to be side by side to create a tiling effect                
-                positions[i] = new Vector2(i*texture.Width, 0); 
+                positions[i] = new Vector2(i * texture.Width, 0);
             }
+            base.LoadContent();
         }
 
-        public void Update()
+        public override void Update(GameTime gameTime)
         {
             // Update the positions of the background
             for (int i = 0; i < positions.Length; i++)
@@ -53,10 +61,10 @@ namespace Shooter.Model
             }
         }
 
-        public void Draw(SpriteBatch sp)
+        public override void Draw(GameTime gameTime)
         {
             foreach (var position in positions)
-                sp.Draw(texture, position, Color.White);
+                spriteBatch.Draw(texture, position, Color.White);
         }
     }
 }

@@ -71,8 +71,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Mechanics\Animation.cs" />
+    <Compile Include="Graphics\Animation.cs" />
+    <Compile Include="Mechanics\CollisionableGameComponent.cs" />
+    <Compile Include="Mechanics\ICollisionable.cs" />
     <Compile Include="Model\Enemy.cs" />
+    <Compile Include="Model\GameText.cs" />
     <Compile Include="Model\ParallaxingBackground.cs" />
     <Compile Include="Model\Player.cs" />
     <Compile Include="Model\Projectile.cs" />

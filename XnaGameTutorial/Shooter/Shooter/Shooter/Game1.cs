@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Input.Touch;
 using Microsoft.Xna.Framework.Media;
-using Shooter.Mechanics;
+using Shooter.Graphics;
 using Shooter.Model;
 
 namespace Shooter
@@ -18,40 +18,27 @@ namespace Shooter
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+
+
         // PLAYER
         private Player player;
-        // Keyboard input
-        private KeyboardState currentKeyboardState;
-        private KeyboardState previousKeyboardState;
-        // Gamepad input
-        private GamePadState currentGamePadState;
-        private GamePadState previousGamePadState;
-        // Player movement speed
-        private float playerMoveSpeed;
-        
         // ENEMIES
-        private Texture2D enemyTexture;
         private List<Enemy> enemies;
         // The rate at which enemies appear
         private TimeSpan enemySpawnTime;
         private TimeSpan previousSpawnTime;
         // A Random number generator
         private Random random;
-
-        // PROJECTILES
-        private Texture2D projectileTexture;
-        private List<Projectile> projectiles;
-        // The rate of fire of the player laser
-        private TimeSpan fireTime;
-        private TimeSpan previousFireTime;
-
         // EXPLOSIONS
         private Texture2D explosionTexture;
         private List<Animation> explosions;
  
-        // SCORE
+        // SCORE and PLAYER HEALTH UI
+        private const string SCORE = "Score :";
+        private const string HEALTH = "Health :";
         private int score;
-        private SpriteFont scoreFont;
+        private GameText scoreText;
+        private GameText playerHealthText;
 
         // BACKGROUND
         private Texture2D mainBackground;
@@ -80,23 +67,32 @@ namespace Shooter
         {
             // You add your initialization logic here
             // Player
-            player = new Player();
-            playerMoveSpeed = 8.0f;
+            // Create a new SpriteBatch, which can be used to draw textures.
+            spriteBatch = new SpriteBatch(GraphicsDevice);
+            this.Services.AddService(typeof(SpriteBatch), spriteBatch);
+            // Background
+            bgLayer1 = new ParallaxingBackground(this, -1, "bgLayer1");
+            bgLayer2 = new ParallaxingBackground(this, -2, "bgLayer2");
+            Components.Add(bgLayer1);
+            Components.Add(bgLayer2);
+            // Add player 
+            player = new Player(this, new Vector2(0, GraphicsDevice.Viewport.Height / 2));
+            Components.Add(player);
             // Enemies
             enemies = new List<Enemy>();
             previousSpawnTime = TimeSpan.Zero;
             enemySpawnTime = TimeSpan.FromSeconds(1.0f);
             random = new Random();
-            // Projectiles
-            projectiles = new List<Projectile>();
-            fireTime = TimeSpan.FromSeconds(.15f);
             // Explosions
             explosions = new List<Animation>();
-            // Score
+            // Game Text
             score = 0;
-            // Background
-            bgLayer1 = new ParallaxingBackground();
-            bgLayer2 = new ParallaxingBackground();
+            scoreText = new GameText(this, SCORE + score, new Vector2(GraphicsDevice.Viewport.TitleSafeArea.X,
+                                               GraphicsDevice.Viewport.TitleSafeArea.Y));
+            playerHealthText = new GameText(this, HEALTH + player.Health, new Vector2(GraphicsDevice.Viewport.TitleSafeArea.X,
+                                               GraphicsDevice.Viewport.TitleSafeArea.Y + 30));
+            Components.Add(scoreText);
+            Components.Add(playerHealthText);
             // Enable drag gesture
             TouchPanel.EnabledGestures = GestureType.FreeDrag;
             base.Initialize();
@@ -107,35 +103,18 @@ namespace Shooter
         /// all of your content.
         /// </summary>
         protected override void LoadContent()
-        {
-            // Create a new SpriteBatch, which can be used to draw textures.
-            spriteBatch = new SpriteBatch(GraphicsDevice);
+        {   
             // Load music
             gameplayMusic = Content.Load<Song>("sound/gameMusic");
             laserSound = Content.Load<SoundEffect>("sound/laserFire");
             explosionSound = Content.Load<SoundEffect>("sound/explosion");
             // Play music
             PlayMusic(gameplayMusic);
-            // Load player resources
-            Animation playerAnimation = new Animation();
-            Texture2D playerTexture = Content.Load<Texture2D>("shipAnimation");
-            Vector2 playerPosition = new Vector2(
-                GraphicsDevice.Viewport.TitleSafeArea.X,
-                GraphicsDevice.Viewport.TitleSafeArea.Y + GraphicsDevice.Viewport.TitleSafeArea.Height/2);
-            playerAnimation.Initialize(playerTexture, Vector2.Zero,
-                                       115, 69, 8, 30, Color.White, 1f, true);
-            player.Initialize(playerAnimation, playerPosition);
-            // Load enemy resources
-            enemyTexture = Content.Load<Texture2D>("mineAnimation");
-            // Load projectiles resources
-            projectileTexture = Content.Load<Texture2D>("laser");
             // Load explosion content
             explosionTexture = Content.Load<Texture2D>("explosion");
-            // Load score font
-            scoreFont = Content.Load<SpriteFont>("gameFont");
             // Load background resources
-            bgLayer1.Initialize(Content, "bgLayer1", GraphicsDevice.Viewport.Width, -1);
-            bgLayer2.Initialize(Content, "bgLayer2", GraphicsDevice.Viewport.Width, -2);
+            //bgLayer1.Initialize(Content, "bgLayer1", GraphicsDevice.Viewport.Width, -1);
+            //bgLayer2.Initialize(Content, "bgLayer2", GraphicsDevice.Viewport.Width, -2);
             mainBackground = Content.Load<Texture2D>("mainbackground");
         }
 
@@ -172,64 +151,28 @@ namespace Shooter
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
             // Add your update logic here
-            previousGamePadState = currentGamePadState;
-            previousKeyboardState = currentKeyboardState;
-            currentKeyboardState = Keyboard.GetState();
-            currentGamePadState = GamePad.GetState(PlayerIndex.One);
             UpdatePlayer(gameTime);
             UpdateEnemies(gameTime);
-            UpdateProjectiles();
-            UpdateExplotions(gameTime);
-            UpdateBackground(gameTime);
+            UpdateExplosions(gameTime);
+            UpdateGameText();
             UpdateCollision();
             base.Update(gameTime);
         }
 
+        private void UpdateGameText()
+        {
+            scoreText.Text = SCORE + score;
+            playerHealthText.Text = HEALTH + player.Health;
+        }
+
         private void UpdatePlayer(GameTime gameTime)
         {
-            player.Update(gameTime);
-            //Windows phone inputs
-            while (TouchPanel.IsGestureAvailable)
-            {
-                GestureSample gesture = TouchPanel.ReadGesture();
-                if (gesture.GestureType == GestureType.FreeDrag)
-                    player.Position += gesture.Delta;
-            }
-            // GamePad thumbstick inputs
-            player.Position.X += currentGamePadState.ThumbSticks.Left.X*playerMoveSpeed;
-            player.Position.Y -= currentGamePadState.ThumbSticks.Left.Y*playerMoveSpeed;
-            // Keyboard / Gamepad
-            if (currentKeyboardState.IsKeyDown(Keys.Left) ||
-                currentGamePadState.DPad.Left == ButtonState.Pressed)
-                player.Position.X -= playerMoveSpeed;
-            if (currentKeyboardState.IsKeyDown(Keys.Right) ||
-                currentGamePadState.DPad.Right == ButtonState.Pressed)
-                player.Position.X += playerMoveSpeed;
-            if (currentKeyboardState.IsKeyDown(Keys.Up) ||
-                currentGamePadState.DPad.Up == ButtonState.Pressed)
-                player.Position.Y -= playerMoveSpeed;
-            if (currentKeyboardState.IsKeyDown(Keys.Down) ||
-                currentGamePadState.DPad.Down == ButtonState.Pressed)
-                player.Position.Y += playerMoveSpeed;
-            // Fire only every interval we set as the fireTime
-            if (gameTime.TotalGameTime - previousFireTime > fireTime)
-            {
-                previousFireTime = gameTime.TotalGameTime; // Reset current time
-                AddProjectile(player.Position + new Vector2(player.Width/2, 0));
-            }
-            //laserSound.Play(.5f, 0f, 0f);
             // Reset score if player health goes to zero
             if (player.Health <= 0)
             {
                 player.Health = 100;
                 score = 0;
             }
-        }
-
-        private void UpdateBackground(GameTime gameTime)
-        {
-            bgLayer1.Update();
-            bgLayer2.Update();
         }
 
         private void UpdateEnemies(GameTime gameTime)
@@ -243,7 +186,6 @@ namespace Shooter
             // Update all enemies
             for (int i = enemies.Count - 1; i >= 0; i--)
             {
-                enemies[i].Update(gameTime);
                 if (!enemies[i].Active)
                 {
                     if (enemies[i].Health <= 0) // If the enemy has been destroyed create explotion
@@ -252,22 +194,13 @@ namespace Shooter
                         explosionSound.Play(.1f, 0f, 0f);
                         score += enemies[i].Value;
                     }
+                    Components.Remove(enemies[i]);
                     enemies.RemoveAt(i);
                 }
             }
         }
 
-        private void UpdateProjectiles()
-        {
-            for (int i = projectiles.Count - 1; i >= 0; i--)
-            {
-                projectiles[i].Update();
-                if (!projectiles[i].Active)
-                    projectiles.RemoveAt(i);
-            }
-        }
-
-        private void UpdateExplotions(GameTime gameTime)
+        private void UpdateExplosions(GameTime gameTime)
         {
             for (int i = explosions.Count - 1; i >= 0; i--)
             {
@@ -279,22 +212,10 @@ namespace Shooter
 
         private void UpdateCollision()
         {
-            // Use the Rectangle's built-in intersect function to determine if
-            // two objects are overlapping
-            Rectangle playerBoundingBox;
-            Rectangle enemyBoundingBox;
-            // Player bounding box
-            playerBoundingBox = new Rectangle(
-                (int) player.Position.X,
-                (int) player.Position.Y,
-                player.Width, player.Height);
             // Check collisions between player and enemies
             foreach (var enemy in enemies)
             {
-                enemyBoundingBox = new Rectangle(
-                    (int) enemy.Position.X, (int) enemy.Position.Y,
-                    enemy.Width, enemy.Height);
-                if (playerBoundingBox.Intersects(enemyBoundingBox))
+                if (player.CollidedWith(enemy))
                 {
                     // Substract health from the player based on enemy's damage
                     player.Health -= enemy.Damage;
@@ -305,22 +226,11 @@ namespace Shooter
                         player.Active = false;
                 }
             }
-            Rectangle projectileBoundingBox;
             // Check collisions between enemy and laser
-            foreach (var projectile in projectiles)
+            foreach (var projectile in player.Projectiles)
             foreach (var enemy in enemies)
             {
-                // Create bounding box we need to determine collisions
-                projectileBoundingBox = new Rectangle(
-                    (int) projectile.Position.X - projectile.Width/2,
-                    (int) projectile.Position.Y - projectile.Height/2,
-                    projectile.Width, projectile.Height);
-                enemyBoundingBox = new Rectangle(
-                    (int) enemy.Position.X - enemy.Width/2,
-                    (int) enemy.Position.Y - enemy.Height/2,
-                    enemy.Width, enemy.Height);
-                // Determine collision
-                if (projectileBoundingBox.Intersects(enemyBoundingBox))
+                if (projectile.CollidedWith(enemy))
                 {
                     enemy.Health -= projectile.Damage;
                     projectile.Active = false;
@@ -331,24 +241,15 @@ namespace Shooter
         private void AddEnemy()
         {
             // Create the animation object
-            Animation enemyAnimation = new Animation();
-            enemyAnimation.Initialize(enemyTexture, Vector2.Zero, 47, 61, 8, 30, Color.White, 1f, true);
             // Randomy generate the position of the enemy
             Vector2 position = new Vector2(
-                GraphicsDevice.Viewport.Width + enemyTexture.Width/2,
+                GraphicsDevice.Viewport.Width,
                 random.Next(100, GraphicsDevice.Viewport.Height - 100));
             // Create an enemy
-            Enemy enemy = new Enemy();
-            enemy.Initialize(enemyAnimation, position);
+            Enemy enemy = new Enemy(this, position);
             // Add the enemy to the active enemies list
             enemies.Add(enemy);
-        }
-
-        private void AddProjectile(Vector2 position)
-        {
-            Projectile projectile = new Projectile();
-            projectile.Initialize(GraphicsDevice.Viewport, projectileTexture, position);
-            projectiles.Add(projectile);
+            Components.Add(enemy);
         }
 
         private void AddExplosion(Vector2 position)
@@ -371,36 +272,15 @@ namespace Shooter
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-
-            // TODO: Add your drawing code here
+            // Add your drawing code here
             spriteBatch.Begin();
             // Background
             spriteBatch.Draw(mainBackground, Vector2.Zero, Color.White);
-            bgLayer1.Draw(spriteBatch);
-            bgLayer2.Draw(spriteBatch);
-            // Enemies
-            foreach (var enemy in enemies)
-                enemy.Draw(spriteBatch);
-            // Projectiles
-            foreach (var projectile in projectiles)
-                projectile.Draw(spriteBatch);
+            base.Draw(gameTime);
             // Explosions
             foreach (var explosion in explosions)
                 explosion.Draw(spriteBatch);
-            // Score
-            spriteBatch.DrawString(scoreFont, "score: " + score,
-                                   new Vector2(GraphicsDevice.Viewport.TitleSafeArea.X,
-                                               GraphicsDevice.Viewport.TitleSafeArea.Y),
-                                   Color.White);
-            // Draw the player health
-            spriteBatch.DrawString(scoreFont, "health: " + player.Health,
-                                   new Vector2(GraphicsDevice.Viewport.TitleSafeArea.X,
-                                               GraphicsDevice.Viewport.TitleSafeArea.Y + 30),
-                                   Color.White);
-            // Player
-            player.Draw(spriteBatch);
             spriteBatch.End();
-            base.Draw(gameTime);
         }
     }
 }
