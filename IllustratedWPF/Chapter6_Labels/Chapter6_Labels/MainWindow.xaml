@@ -1,0 +1,18 @@
+﻿<Window x:Class="Chapter6_Labels.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="600" Width="525">
+    <StackPanel>
+        <Label Content="Jaime in 8 bits" FontWeight="Bold"/>
+        <Grid Height="300" Width="300">
+            <Label>
+                <!-- Set the Content as an image. Note that the Image class derives from UIElement -->
+                <Image Source="Pictures/8bitJaime_bigger.png"/>
+            </Label>
+        </Grid>
+        <Label Target="{Binding ElementName=firstName}">_First Name:</Label>
+        <TextBox Name="firstName"/>
+        <Label Target="{Binding ElementName=lastName}">_Last Name:</Label>
+        <TextBox Name="lastName" />
+    </StackPanel>
+</Window>

@@ -1,0 +1,10 @@
+﻿<Window x:Class="Chapter6_ModalDialog.MyDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MyDialog" Height="300" Width="300">
+    <StackPanel>
+        <TextBlock Padding="10">Click a button.</TextBlock>
+        <Button IsDefault="True" Click="Ok_OnClick">Ok</Button>
+        <Button IsCancel="True" Click="Cancel_OnClick">Cancel</Button>
+    </StackPanel>
+</Window>
