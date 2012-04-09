@@ -1,0 +1,10 @@
+﻿<Window x:Class="Chapter4_MarkupExtensions.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:local="clr-namespace:Chapter4_MarkupExtensions"
+        Title="MainWindow" Height="350" Width="525">
+
+    <StackPanel>
+        <Button Content="{local:ShowTime First}" /> <!-- This one calls the ctor of ShowTime extension class -->
+        <Button Content="{local:ShowTime Header=Second}" /> <!-- This one calls the parameterless ctor of the ShowTime extension class and then sets the Header property-->
+    </StackPanel>
+</Window>

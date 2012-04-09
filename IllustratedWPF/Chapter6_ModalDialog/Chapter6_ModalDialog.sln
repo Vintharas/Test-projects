@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chapter6_ModalDialog", "Chapter6_ModalDialog\Chapter6_ModalDialog.csproj", "{DE775502-01CA-4D75-9D34-2018F8637653}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DE775502-01CA-4D75-9D34-2018F8637653}.Debug|x86.ActiveCfg = Debug|x86
+		{DE775502-01CA-4D75-9D34-2018F8637653}.Debug|x86.Build.0 = Debug|x86
+		{DE775502-01CA-4D75-9D34-2018F8637653}.Release|x86.ActiveCfg = Release|x86
+		{DE775502-01CA-4D75-9D34-2018F8637653}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
