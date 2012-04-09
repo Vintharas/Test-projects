@@ -1,0 +1,10 @@
+﻿<Window x:Class="Chapter8_DataBinding_101.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="350" Width="525">
+    <StackPanel>
+        <!-- The textbox Text property is effectively bound to the Slider.Value property -->
+        <TextBox Margin="10" Text="{Binding ElementName=Slider, Path=Value}"/>
+        <Slider Name="Slider" TickPlacement="TopLeft" Margin="10"/>        
+    </StackPanel>
+</Window>

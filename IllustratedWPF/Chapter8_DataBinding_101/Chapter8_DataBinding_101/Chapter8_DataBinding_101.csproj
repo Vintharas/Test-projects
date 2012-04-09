@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{7DCE1ADB-8681-47E5-BCF7-05F3C4FA7B48}</ProjectGuid>
+    <ProjectGuid>{DA150193-47CB-401A-91BC-BEADC928B078}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Chapter7_AttachedProperties</RootNamespace>
-    <AssemblyName>Chapter7_AttachedProperties</AssemblyName>
+    <RootNamespace>Chapter8_DataBinding_101</RootNamespace>
+    <AssemblyName>Chapter8_DataBinding_101</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
@@ -63,7 +63,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="IntStorage.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
