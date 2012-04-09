@@ -5,7 +5,6 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Input.Touch;
 using Shooter.Graphics;
-using System.Linq;
 using Shooter.Mechanics;
 
 namespace Shooter.Model

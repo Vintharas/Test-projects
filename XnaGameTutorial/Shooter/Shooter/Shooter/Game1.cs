@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
@@ -213,18 +214,15 @@ namespace Shooter
         private void UpdateCollision()
         {
             // Check collisions between player and enemies
-            foreach (var enemy in enemies)
+            foreach (var enemy in enemies.Where(enemy => player.CollidedWith(enemy)))
             {
-                if (player.CollidedWith(enemy))
-                {
-                    // Substract health from the player based on enemy's damage
-                    player.Health -= enemy.Damage;
-                    // Destroy enemy
-                    enemy.Health = 0;
-                    // If the player health is less than zero he died
-                    if (player.Health <= 0)
-                        player.Active = false;
-                }
+                // Substract health from the player based on enemy's damage
+                player.Health -= enemy.Damage;
+                // Destroy enemy
+                enemy.Health = 0;
+                // If the player health is less than zero he died
+                if (player.Health <= 0)
+                    player.Active = false;
             }
             // Check collisions between enemy and laser
             foreach (var projectile in player.Projectiles)
