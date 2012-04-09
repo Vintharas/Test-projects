@@ -1,0 +1,25 @@
+﻿<Window x:Class="Chapter8_Triggers.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="350" Width="525">
+    <StackPanel>
+        <!-- When UpdateSourceTrigger=PropertyChanged, the binding between target (textbox) 
+        and the source (slider) will update the slider value as soon as we change the textbox content-->
+        <DockPanel>
+            <Label Margin="10">Textbox with UpdateSourceTrigger=PropertyChanged</Label>
+            <TextBox Margin="10" Text="{Binding ElementName=sourceSlider, Path=Value, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Stretch"/>
+        </DockPanel>
+        <!-- When LostFocus is used, the slider is updated when the focus on the textbox is lost -->
+        <DockPanel>
+            <Label Margin="10">Textbox with UpdateSourceTrigger=LostFocus</Label>
+            <TextBox Margin="10" Text="{Binding ElementName=sourceSlider, Path=Value, UpdateSourceTrigger=LostFocus}"/>
+        </DockPanel>
+        <!-- When Explicit is used, the slider is updated when there is a call to the UpdateSource method -->
+        <DockPanel>
+            <Label Margin="10">Textbox with UpdateSourceTrigger=LostFocus</Label>
+            <TextBox Name="theExplicitlyUpdatingTextBox" Margin="10" Text="{Binding ElementName=sourceSlider, Path=Value, UpdateSourceTrigger=Explicit}"/>
+            <Button Click="Button_Click" Margin="10">Update!</Button>
+        </DockPanel>
+        <Slider Name="sourceSlider" TickPlacement="TopLeft" Margin="10"/>        
+    </StackPanel>
+</Window>

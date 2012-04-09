@@ -1,0 +1,11 @@
+<Configuration>
+  <SnapshotDialog>
+    <InitialDirectory>C:\Projects\Dev\TestProjects\IllustratedWPF\Chapter8_Triggers</InitialDirectory>
+  </SnapshotDialog>
+  <CoverageFilters>
+    <IncludeFilters>
+      <Filter ModuleMask="*" ClassMask="*" FunctionMask="*" />
+    </IncludeFilters>
+    <ExcludeFilters />
+  </CoverageFilters>
+</Configuration>

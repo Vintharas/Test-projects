@@ -1,0 +1,11 @@
+﻿<Window x:Class="Chapter8_TheBindingObject.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="350" Width="525">
+    <StackPanel>
+        <!-- the label will display whatever is written in the Textbox control. The 
+        Binding will be created in code to show what's going on behind the scenes -->
+        <Label Name="target" />       
+        <TextBox Name="source">Some Text</TextBox>
+    </StackPanel>
+</Window>
