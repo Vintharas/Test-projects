@@ -27,25 +27,26 @@
         </StackPanel>
         <StackPanel x:Name="ContentPanel" Margin="12,0,12,0" Grid.Row="1" >
         	<Border Background="White">
-        		<TextBlock TextWrapping="Wrap" Text="TextBlock" FontSize="48" Height="64" Foreground="Black"/>
+                <!-- The TextBlock is bound to the dependency property DisplayNumber of the DataContext object associated to the control-->
+        		<TextBlock TextWrapping="Wrap" Text="{Binding DisplayNumber}" FontSize="48" Foreground="{StaticResource PhoneTextBoxForegroundBrush}" Height="58" TextAlignment="Right" FontFamily="Segoe WP Semibold"/>
         	</Border>
-        	<toolkit:WrapPanel>
-        		<Button x:Name="Clear" Content="c" Width="100" HorizontalAlignment="Right" Margin="0" d:LayoutOverrides="Width" Height="100" FontSize="48"/>
-        		<Button x:Name="Button01" Content="1" Width="100" HorizontalAlignment="Right" Margin="0" Height="100" FontSize="48" d:LayoutOverrides="Width"/>
-        		<Button x:Name="Button02" Content="2" Width="100" HorizontalAlignment="Right" Margin="0" Height="100" FontSize="48" d:LayoutOverrides="Width"/>
-        		<Button x:Name="Button03" Content="3" Width="100" HorizontalAlignment="Right" Margin="0" Height="100" FontSize="48" d:LayoutOverrides="Width"/>
-        		<Button x:Name="Button04" Content="4" Width="100" HorizontalAlignment="Right" Margin="0" d:LayoutOverrides="Width" Height="100" FontSize="48"/>
-        		<Button x:Name="Button05" Content="5" Width="100" HorizontalAlignment="Right" Margin="0" Height="100" FontSize="48" d:LayoutOverrides="Width"/>
-        		<Button x:Name="Button06" Content="6" Width="100" HorizontalAlignment="Right" Margin="0" Height="100" FontSize="48" d:LayoutOverrides="Width"/>
-        		<Button x:Name="Button07" Content="7" Width="100" HorizontalAlignment="Right" Margin="0" Height="100" FontSize="48" d:LayoutOverrides="Width"/>
-				<Button x:Name="Button08" Content="8" Width="100" HorizontalAlignment="Right" Margin="0" Height="100" FontSize="48" d:LayoutOverrides="Width"/>
-        		<Button x:Name="Button09" Content="9" Width="100" HorizontalAlignment="Right" Margin="0" Height="100" FontSize="48" d:LayoutOverrides="Width"/>
-        		<Button x:Name="Button00" Content="0" Width="200" HorizontalAlignment="Right" Margin="0" Height="100" FontSize="48" d:LayoutOverrides="Width"/>
-				<Button x:Name="ButtonPlus" Content="+" Width="100" HorizontalAlignment="Right" Margin="0" Height="100" FontSize="48" d:LayoutOverrides="Width"/>
-        		<Button x:Name="ButtonMinus" Content="-" Width="100" HorizontalAlignment="Right" Margin="0" Height="100" FontSize="48" d:LayoutOverrides="Width"/>
-				<Button x:Name="ButtonMultiply" Content="X" Width="100" HorizontalAlignment="Right" Margin="0" Height="100" FontSize="48" d:LayoutOverrides="Width"/>
-        		<Button x:Name="ButtonDivide" Content="/" Width="100" HorizontalAlignment="Right" Margin="0" Height="100" FontSize="48" d:LayoutOverrides="Width"/>
-				<Button x:Name="ButtonEqual" Content="=" Width="200" HorizontalAlignment="Right" Margin="0" Height="100" FontSize="48" d:LayoutOverrides="Width"/>
+        	<toolkit:WrapPanel Margin="0,30">
+        		<Button x:Name="Clear" Content="c" Width="100" HorizontalAlignment="Right" Margin="0,0,10,0" d:LayoutOverrides="Width" Height="100" FontSize="48" Click="Clear_Click" />
+        		<Button x:Name="Button01" Content="1" Width="100" HorizontalAlignment="Right" Margin="0,0,10,0" Height="100" FontSize="48" d:LayoutOverrides="Width" Click="NumberButton_Click" />
+        		<Button x:Name="Button02" Content="2" Width="100" HorizontalAlignment="Right" Margin="0,0,10,0" Height="100" FontSize="48" d:LayoutOverrides="Width" Click="NumberButton_Click" />
+        		<Button x:Name="Button03" Content="3" Width="100" HorizontalAlignment="Right" Margin="0,0,10,0" Height="100" FontSize="48" d:LayoutOverrides="Width" Click="NumberButton_Click" />
+        		<Button x:Name="Button04" Content="4" Width="100" HorizontalAlignment="Right" Margin="0,0,10,0" d:LayoutOverrides="Width" Height="100" FontSize="48" Click="NumberButton_Click" />
+        		<Button x:Name="Button05" Content="5" Width="100" HorizontalAlignment="Right" Margin="0,0,10,0" Height="100" FontSize="48" d:LayoutOverrides="Width" Click="NumberButton_Click" />
+        		<Button x:Name="Button06" Content="6" Width="100" HorizontalAlignment="Right" Margin="0,0,10,0" Height="100" FontSize="48" d:LayoutOverrides="Width" Click="NumberButton_Click" />
+        		<Button x:Name="Button07" Content="7" Width="100" HorizontalAlignment="Right" Margin="0,0,10,0" Height="100" FontSize="48" d:LayoutOverrides="Width" Click="NumberButton_Click" />
+				<Button x:Name="Button08" Content="8" Width="100" HorizontalAlignment="Right" Margin="0,0,10,0" Height="100" FontSize="48" d:LayoutOverrides="Width" Click="NumberButton_Click" />
+        		<Button x:Name="Button09" Content="9" Width="100" HorizontalAlignment="Right" Margin="0,0,10,0" Height="100" FontSize="48" d:LayoutOverrides="Width" Click="NumberButton_Click" />
+        		<Button x:Name="Button00" Content="0" Width="210" HorizontalAlignment="Right" Margin="0,0,10,0" Height="100" FontSize="48" Click="NumberButton_Click" />
+				<Button x:Name="ButtonPlus" Content="+" Width="100" HorizontalAlignment="Right" Margin="0,0,10,0" Height="100" FontSize="48" d:LayoutOverrides="Width" Click="Add_Click" />
+        		<Button x:Name="ButtonMinus" Content="-" Width="100" HorizontalAlignment="Right" Margin="0,0,10,0" Height="100" FontSize="48" d:LayoutOverrides="Width" Click="Subtract_Click"/>
+				<Button x:Name="ButtonMultiply" Content="X" Width="100" HorizontalAlignment="Right" Margin="0,0,10,0" Height="100" FontSize="48" d:LayoutOverrides="Width" Click="Multiply_Click"/>
+        		<Button x:Name="ButtonDivide" Content="/" Width="100" HorizontalAlignment="Right" Margin="0,0,10,0" Height="100" FontSize="48" d:LayoutOverrides="Width" Click="Divide_Click"/>
+				<Button x:Name="ButtonEqual" Content="=" Width="210" HorizontalAlignment="Right" Margin="0,0,10,0" Height="100" FontSize="48" Click="Equals_Click"/>
         	</toolkit:WrapPanel>
         </StackPanel>
 
