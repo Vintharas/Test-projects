@@ -1,0 +1,18 @@
+﻿<Window x:Class="Chapter8_DataConverters.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:Chapter8_DataConverters"
+        Title="MainWindow" Height="350" Width="525"> <!-- See how the projects namespace is referenced as 'local'-->
+    <StackPanel>
+        <TextBox Name="target" Margin="10">
+            <TextBox.Text>
+                <Binding ElementName="source" Path="Value"  UpdateSourceTrigger="PropertyChanged">
+                    <Binding.Converter><!-- associate converter with the binding -->
+                        <local:DisplayTwoDecimalPlaces/>
+                    </Binding.Converter>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <Slider Name="source" Value="5" TickPlacement="TopLeft" Margin="10"/>
+    </StackPanel>
+</Window>
