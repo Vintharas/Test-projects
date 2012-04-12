@@ -1,0 +1,15 @@
+﻿<Window x:Class="Chapter8_BindingItemsControls.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="350" Width="525">
+    <StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="5, 10" DataContext="{Binding ElementName=comboPeople, Path=SelectedItem}">
+        <!-- this binds the datacontext of the stack panel to the item selected in the combo box-->
+            <Label Name="lblFirstName" FontWeight="Bold" Content="{Binding Path=FirstName}"/>
+            <Label Name="lblAge" Content="{Binding Path=Age}"/>
+            <Label Name="lblColor" Content="{Binding Path=FavoriteColor}"/>
+        </StackPanel>
+        <!-- Use DisplayMemberPath to set the property of the objects within the ItemsSource to display in the combobox-->
+        <ComboBox Name="comboPeople" SelectedIndex="0" DisplayMemberPath="FirstName"/>
+    </StackPanel>
+</Window>
