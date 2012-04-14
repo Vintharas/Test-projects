@@ -1,0 +1,22 @@
+﻿<Window x:Class="Chapter9_BuiltInCommands.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="350" Width="525">
+    <StackPanel>
+        <DockPanel Margin="0,0,0,5">
+            <Label>Cut from here:</Label>
+            <TextBox Name="cutFrom"></TextBox>
+        </DockPanel>
+        <DockPanel>
+            <Label>Paste here:</Label>
+            <TextBox Name="pasteTo"></TextBox>
+        </DockPanel>
+        <StackPanel Margin="0,10" Orientation="Horizontal">
+            <!-- Note how buttons have built-in support to be used as Command sources. -->
+            <!-- Also, the text boxes have built-in support to be used as Command targets.-->
+            <!-- Because we're using a built-in command we can express all commanding within XAML-->
+            <Button Name="btnCut" Width="50" Command="Cut" CommandTarget="{Binding ElementName=cutFrom}">Cut</Button>
+            <Button Name="btnPaste" Width="50" Command="Paste" CommandTarget="{Binding ElementName=pasteTo}">Paste</Button>
+        </StackPanel>
+    </StackPanel>
+</Window>

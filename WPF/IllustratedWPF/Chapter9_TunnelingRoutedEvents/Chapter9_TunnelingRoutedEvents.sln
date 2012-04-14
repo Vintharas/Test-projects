@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chapter9_TunnelingRoutedEvents", "Chapter9_TunnelingRoutedEvents\Chapter9_TunnelingRoutedEvents.csproj", "{FA7B24A5-7428-49E1-B071-7F47D7F538BF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FA7B24A5-7428-49E1-B071-7F47D7F538BF}.Debug|x86.ActiveCfg = Debug|x86
+		{FA7B24A5-7428-49E1-B071-7F47D7F538BF}.Debug|x86.Build.0 = Debug|x86
+		{FA7B24A5-7428-49E1-B071-7F47D7F538BF}.Release|x86.ActiveCfg = Release|x86
+		{FA7B24A5-7428-49E1-B071-7F47D7F538BF}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

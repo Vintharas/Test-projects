@@ -1,0 +1,11 @@
+﻿<Window x:Class="Chapter9_BasicEventHanding.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="350" Width="525">
+    <StackPanel>
+        <Button Name="theButton" Padding="10"
+                Click="theButton_Click"
+                MouseEnter="theButton_MouseEnter"
+                MouseLeave="theButton_MouseLeave" Content="Click Me" />
+    </StackPanel>
+</Window>

@@ -1,0 +1,21 @@
+﻿<Window x:Class="Chapter9_BubblingRoutedEvents.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="350" Width="525">
+    <DockPanel>
+        <Border Name="theBorder" BorderThickness="10" BorderBrush="BurlyWood" MouseUp="TheBorder_OnMouseUp">
+            <Label Name="theLabel" Padding="10" MouseUp="theLabel_MouseUp">
+                <Image Name="jaime" Source="8bitJaime_bigger.png" Stretch="None" MouseUp="jaime_MouseUp" />
+            </Label>
+        </Border>
+        <Border BorderThickness="10" BorderBrush="DarkGray">
+            <DockPanel>
+                <Button Name="btnClear" Padding="10,3" Click="btnClear_Click" DockPanel.Dock="Top">Clear</Button>
+                <TextBlock DockPanel.Dock="Top" TextWrapping="Wrap" Padding="10">Click inside the different areas to the right and see how a bubbling event works</TextBlock>
+                <ScrollViewer>
+                    <TextBlock Name="tbEventInformation" Margin="5,5,0,0"></TextBlock>
+                </ScrollViewer>
+            </DockPanel>
+        </Border>
+    </DockPanel>
+</Window>
