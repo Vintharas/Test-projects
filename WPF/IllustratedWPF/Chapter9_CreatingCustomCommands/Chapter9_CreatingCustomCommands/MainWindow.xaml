@@ -1,0 +1,9 @@
+﻿<Window x:Class="Chapter9_CreatingCustomCommands.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="350" Width="525">
+    <StackPanel>
+        <TextBox Name="txtBox" Margin="10,10" FontWeight="Bold" Background="Aquamarine"/>
+        <Button Name="btnReverse" HorizontalAlignment="Center" Padding="10, 3" FontWeight="Bold" Margin="10, 0" Content="Reverse!"/>
+    </StackPanel>
+</Window>
