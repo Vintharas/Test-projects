@@ -1,0 +1,25 @@
+﻿<Window x:Class="Chapter12_PropertyTriggers.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="350" Width="525">
+    
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="FontStyle" Value="Italic"/>
+            <!-- Trigger that is triggered when the mouse is over a button -->
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="FontWeight" Value="Bold"/>
+                    <Setter Property="FontSize" Value="20"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    
+    
+    <StackPanel>
+        <Label>Hover over the buttons to see the property triggers at work!</Label>
+        <Button>Button 1</Button>
+        <Button>Button 2</Button>
+    </StackPanel>
+</Window>

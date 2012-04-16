@@ -1,0 +1,10 @@
+﻿<Window x:Class="Chapter11_AssemblyResources.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid Name="theGrid">
+        <!-- Accessing an assembly resource via XAML -->
+        <Image Source="jaime.png" Margin="50"/>
+        <!-- Check code to see how it works via C#-->
+    </Grid>
+</Window>

@@ -1,0 +1,33 @@
+﻿<Window x:Class="Chapter12_NamedStyles.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="350" Width="525">
+    
+    <Window.Resources>
+        <!-- This is an example of a named resource -->
+        <!-- Name resources have their names ending in Style by convention-->
+        <Style x:Key="buttonStyle">
+            <!-- Use setter elements to set the value of every property-->
+            <Setter Property="Button.Height" Value="40" />
+            <Setter Property="Button.Width" Value="110" />
+            <Setter Property="Button.FontSize" Value="16" />
+            <!-- The class name doesn't have to match exactly the target of the style, styling will work as long as the target element derives from the class used in the Setter -->
+            <Setter Property="Control.FontWeight" Value="Bold" />
+            <!-- For complex properties you can use attribute element syntax -->
+            <Setter Property="Button.Background">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Color="White"  Offset="0" />
+                        <GradientStop Color="Silver" Offset="1" />
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    
+    <StackPanel>
+        <!-- Since styles are declared as resources, you can apply a named style to an element the way you would apply any resource-->
+        <Button Style="{StaticResource buttonStyle}">the Button</Button>
+        <Button Style="{StaticResource buttonStyle}">the Button 2</Button>
+    </StackPanel>
+</Window>

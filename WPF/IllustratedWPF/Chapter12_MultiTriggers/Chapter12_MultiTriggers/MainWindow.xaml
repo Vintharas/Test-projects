@@ -1,0 +1,29 @@
+﻿<Window x:Class="Chapter12_MultiTriggers.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="350" Width="525">
+    
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Style.Triggers>
+                <MultiTrigger>
+                    <!-- Both conditions of the Multitrigger must be satisfied for the style to be applied-->
+                    <MultiTrigger.Conditions>
+                        <Condition Property="IsMouseOver" Value="True"/>
+                        <Condition Property="IsFocused" Value="True" />
+                    </MultiTrigger.Conditions>
+                    <MultiTrigger.Setters>
+                        <Setter Property="FontWeight" Value="Bold"/>
+                        <Setter Property="FontSize" Value="20"/>
+                    </MultiTrigger.Setters>
+                </MultiTrigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    
+    <StackPanel>
+        <Label>The Multitrigger is only activated when the button is both focused and with the mouse over</Label>
+        <Button>Button 1</Button>
+        <Button>Button 2</Button>
+    </StackPanel>
+</Window>
