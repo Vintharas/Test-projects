@@ -1,0 +1,13 @@
+﻿<Window x:Class="Chapter11_Resources.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="350" Width="525">
+    <StackPanel Name="theStackPanel">
+        <!-- You can add resources in XAML. Note how we had resources to the StackPanel Resources property-->
+        <StackPanel.Resources>
+            <SolidColorBrush x:Key="background" Color="Silver" />
+        </StackPanel.Resources>
+        <!-- You can retrieve the resource using the StaticResource markup extension -->
+        <Button Name="theButton" Background="{StaticResource background}">The Button</Button>
+    </StackPanel>
+</Window>

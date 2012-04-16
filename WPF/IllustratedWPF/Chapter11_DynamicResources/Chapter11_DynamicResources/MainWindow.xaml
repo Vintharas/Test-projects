@@ -1,0 +1,20 @@
+﻿<Window x:Class="Chapter11_DynamicResources.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="350" Width="525">
+
+    <Window.Resources>
+        <LinearGradientBrush x:Key="background" StartPoint="0, 0" EndPoint="1, 1">
+            <GradientStop Color="White" Offset="0"/>
+            <GradientStop Color="Black" Offset="1"/>
+        </LinearGradientBrush>
+    </Window.Resources>
+
+    <StackPanel>
+        <TextBlock Name="theTextbox" Margin="10" FontFamily="Arial Black">Some Buttons</TextBlock>
+        <Button Height="40" Name="oneButton" Background="{DynamicResource background}">I have my background as a DynamicResource</Button>
+        <!-- Notice how when clicking the button, the "background" resource is changed, and the Background property of the button is updated-->
+        <Button Height="40" Name="anotherButton" Background="{StaticResource background}" Click="anotherButton_Click">Change Background of the button above! My background won't change, it's a StaticResource</Button>
+    </StackPanel>
+</Window>
+
