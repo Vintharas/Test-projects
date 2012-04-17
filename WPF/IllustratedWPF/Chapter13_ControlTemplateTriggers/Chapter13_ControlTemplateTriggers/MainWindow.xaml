@@ -1,0 +1,31 @@
+﻿<Window x:Class="Chapter13_ControlTemplateTriggers.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="350" Width="525">
+    
+    <Window.Resources>
+        <ControlTemplate x:Key="myButtonTemplate" TargetType="Button">
+            <Border Background="White" BorderBrush="Blue" BorderThickness="1" HorizontalAlignment="Center" Name="templateBorder">
+                <ContentPresenter/>
+            </Border>
+            <!-- ControlTemplate triggers allows us to vary the appearance of the different elements within the template 
+            based of conditions. For instance, the triggers below modified the background of the button when the mouse is over it,
+            and the padding and border thickness when the button is pressed -->
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <!-- The Setters for ControlTemplate Triggers have an extra property TargetName because they need to refer
+                    to a specific element within the ControlTemplate-->
+                    <Setter TargetName="templateBorder" Property="Background" Value="LightGray"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter TargetName="templateBorder" Property="Padding" Value="2"/>
+                    <Setter TargetName="templateBorder" Property="BorderThickness" Value="8"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+    </Window.Resources>
+    
+    <StackPanel>
+        <Button Template="{StaticResource myButtonTemplate}" Click="Button_Click">Click Me!</Button>
+    </StackPanel>
+</Window>

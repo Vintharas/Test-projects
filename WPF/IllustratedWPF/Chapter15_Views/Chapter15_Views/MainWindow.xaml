@@ -1,0 +1,49 @@
+﻿<Window x:Class="Chapter15_ViewFiltering.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Filter By..." Height="350" Width="525">
+
+
+    <Window.Resources>
+        <!-- Regular Control Template for a listbox-->
+        <ControlTemplate x:Key="ListTemplate">
+            <Border BorderBrush="SteelBlue" BorderThickness="5" CornerRadius="3" Background="Pink">
+                <Border BorderBrush="White" BorderThickness="1" Padding="5, 10, 10, 10">
+                    <Grid>
+                        <ItemsPresenter TextBlock.Foreground="Black"/>
+                    </Grid>
+                </Border>
+            </Border>
+        </ControlTemplate>
+        <!-- A Data Template-->
+        <DataTemplate x:Key="NiceFormat">
+            <Border Margin="1" BorderBrush="Blue" BorderThickness="2" CornerRadius="2">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="60"/>
+                        <ColumnDefinition Width="20"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock FontWeight="Bold" Text="{Binding FirstName}" Padding="2"/>
+                    <Rectangle Grid.Column="1" Grid.RowSpan="2" Fill="{Binding FavoriteColor}"/>
+                    <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding Age}" Padding="2"/>
+                </Grid>
+            </Border>
+        </DataTemplate>
+    </Window.Resources>
+
+    <DockPanel>
+        <!-- Notice how we set the data template via the ItemTemplate property,
+        for a ContentControl it would be the ContentTemplate property instead -->
+        <ListBox Name="listPeople" SelectedIndex="0" Template="{StaticResource ListTemplate}" ItemTemplate="{StaticResource NiceFormat}"/>
+        <StackPanel Name="sp" Margin="20, 5" DataContext="{Binding ElementName=listPeople, Path=SelectedItem}">
+            <Button Click="RemoveFilters" Margin="5">Default</Button>
+            <Button Click="FilterLessThanThirty" Margin="5">Less Than 30</Button>
+            <Button Click="FilterGreaterThan30" Margin="5">Greater Than 30</Button>
+        </StackPanel>
+    </DockPanel>
+    
+</Window>

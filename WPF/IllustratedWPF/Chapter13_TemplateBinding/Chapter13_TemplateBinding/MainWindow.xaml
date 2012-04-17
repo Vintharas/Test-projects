@@ -1,0 +1,25 @@
+﻿<Window x:Class="Chapter13_TemplateBinding.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="350" Width="525">
+    
+    <Window.Resources>
+        <!-- Note how we use TemplateBinding to bind the Padding property 
+        of the template parent to the Margin property of the ContentPresenter. 
+        By binding the padding of the Button to the Margin of the ContentPresenter we
+        achieve the expected result, that is because the ContentPresenter represents
+        the Content of the templated parent.
+        -->
+        <ControlTemplate x:Key="btnTemplate" TargetType="Button">
+            <Grid>
+                <Ellipse Fill="Aqua" Stroke="Blue" StrokeThickness="2"/>
+                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Margin="{TemplateBinding Padding}"/>
+            </Grid>
+        </ControlTemplate>
+    </Window.Resources>
+    
+    <StackPanel>
+        <Button Template="{StaticResource btnTemplate}">Button 1</Button>
+        <Button Padding="10" Template="{StaticResource btnTemplate}">Button 2</Button>
+    </StackPanel>
+</Window>

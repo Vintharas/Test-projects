@@ -1,0 +1,22 @@
+﻿<Window x:Class="Chapter13_ControlTemplates.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="350" Width="525">
+    
+    <!-- You can store control templates as logical resources. 
+    Remember to use x:Key to give them a name so you can refer to them from the controls
+    whose appearance you want to change -->
+    <Window.Resources>
+        <ControlTemplate x:Key="theButtonsTemplate">
+            <Border Padding="5" Background="Aqua" BorderBrush="Blue" BorderThickness="5" HorizontalAlignment="Center" CornerRadius="5">
+                <TextBlock>Click Here!</TextBlock>
+            </Border>
+        </ControlTemplate>
+    </Window.Resources>
+    
+    <StackPanel>
+        <!-- You must refer to the template as a StaticResource.
+        Also, notice how the text within the button is set by the template, and not by the XAML bellow-->
+        <Button Template="{StaticResource theButtonsTemplate}" FontWeight="Bold" Click="theButton_Click" Name="theButton">Click Me</Button>    
+    </StackPanel>
+</Window>
