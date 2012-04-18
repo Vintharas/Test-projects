@@ -1,0 +1,61 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="WP7HomeInventory.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="768"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    shell:SystemTray.IsVisible="True" 
+    xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls">
+
+    <!-- Note how we refer to the Panorama element using it's "controls" namespace -->
+    <controls:Panorama Name="panorama" Title="home inventory">
+        <!-- Set the background to the panorama to an image of a warehouse -->
+        <controls:Panorama.Background>
+            <ImageBrush ImageSource="Images/warehouse.jpg" Opacity=".4" />
+        </controls:Panorama.Background>
+        <controls:PanoramaItem Header="your stuff">
+            <Grid />
+        </controls:PanoramaItem>
+        <controls:PanoramaItem Header="categories">
+            <Grid>
+                <Button x:Name="btnCategories" Width="200" Height="100" FontFamily="{StaticResource PhoneFontFamilyLight}" Click="btnCategories_Click">Add New</Button>
+            </Grid>
+        </controls:PanoramaItem>
+        <controls:PanoramaItem Header="rooms">
+            <Grid />
+        </controls:PanoramaItem>
+        <controls:PanoramaItem Header="photos">
+            <ScrollViewer>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="110"/>
+                        <ColumnDefinition Width="110"/>
+                        <ColumnDefinition Width="110"/>
+                        <ColumnDefinition Width="110"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="110"/>
+                        <RowDefinition Height="110"/>
+                        <RowDefinition Height="110"/>
+                        <RowDefinition Height="110"/>
+                        <RowDefinition Height="110"/>
+                    </Grid.RowDefinitions>
+                    <Image Source="Images/laptop.jpg" Width="100" Height="100" />
+                    <Image Source="Images/nook.jpg" Width="100" Height="100" Grid.Column="1"/>
+                    <Image Source="Images/clicker.jpg" Width="100" Height="100" Grid.Column="2"/>
+                    <Image Source="Images/headphones.jpg" Width="100" Height="100" Grid.Column="3"/>
+                    <Image Source="Images/bag.jpg" Width="100" Height="100" Grid.Row="1"/>
+                    <Image Source="Images/mifi.png" Width="100" Height="100" Grid.Row="1" Grid.Column="1"/>
+                </Grid>
+            </ScrollViewer>
+        </controls:PanoramaItem>
+    </controls:Panorama>
+    
+</phone:PhoneApplicationPage>
