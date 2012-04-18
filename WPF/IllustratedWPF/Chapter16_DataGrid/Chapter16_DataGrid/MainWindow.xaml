@@ -1,0 +1,13 @@
+﻿<Window x:Class="Chapter16_DataGrid.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="DataGrid!" Height="350" Width="525">
+    <DataGrid Name="theDataGrid" AutoGenerateColumns="False" Margin="10">
+        <DataGrid.Columns>
+            <DataGridTextColumn Binding="{Binding FirstName}" Header="First Name" />
+            <DataGridTextColumn Binding="{Binding LastName}" Header="Last Name" />
+            <DataGridCheckBoxColumn Binding="{Binding HasRoadster}" Header="Has Roadster" Width="SizeToHeader" /> <!-- The width of the column is based on the header contents-->
+            <DataGridTextColumn Binding="{Binding Age}" Header="Age" Width="*" /> <!-- The width of the column takes up all the remaining space or the remaining width is divided amongst all star-widthed columns -->
+        </DataGrid.Columns>
+    </DataGrid>
+</Window>

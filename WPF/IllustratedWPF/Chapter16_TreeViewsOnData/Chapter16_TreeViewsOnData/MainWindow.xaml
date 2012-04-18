@@ -1,0 +1,46 @@
+﻿<Window x:Class="Chapter16_TreeViewsOnData.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Chapter16_TreeViewsOnData="clr-namespace:Chapter16_TreeViewsOnData" Title="TreeView over POCO collection" Height="350" Width="525">
+    
+    <Window.Resources>
+        <!-- See how we use the DataType property to specify the POCO object the HierarchicalDataTemplate is associated to.
+        Note how we also include its namespace. 
+        The HierarchicalDataTemplate allows us to specify an appearance for the top level element, and also an ItemsSource property to indicate where the sub-nodes can be found. -->
+        <HierarchicalDataTemplate DataType="{x:Type Chapter16_TreeViewsOnData:WorldRegion}" ItemsSource="{Binding Path=Maps}">
+            <TextBlock Text="{Binding Path=RegionName}" Foreground="Gray" />
+        </HierarchicalDataTemplate>
+        <HierarchicalDataTemplate DataType="{x:Type Chapter16_TreeViewsOnData:MapInfo}">
+            <TextBlock Text="{Binding Path=SecondName}" />
+        </HierarchicalDataTemplate>
+    </Window.Resources>
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <TreeView Name="oldMaps" FontWeight="Bold"/>
+        <GridSplitter Grid.Column="1" Width="2" Background="DarkGray" VerticalAlignment="Stretch" HorizontalAlignment="Center"/>
+        <DockPanel Grid.Column="2">
+            <StackPanel TextBlock.FontWeight="Bold" DockPanel.Dock="Top">
+                <Border BorderBrush="DarkGray" BorderThickness="1" Margin="3" Padding="3">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding ElementName=oldMaps, Path=SelectedItem.FirstName}"/>
+                        <TextBlock Margin="5, 0, 0, 0" Text="{Binding ElementName=oldMaps, Path=SelectedItem.SecondName}"/>
+                    </StackPanel>
+                </Border>
+                <!-- We can bind these controls directly to the item selected within the TreeView-->
+                <TextBlock Margin="10, 0, 0, 0" Text="{Binding ElementName=oldMaps, Path=SelectedItem.Title}"/>
+                <TextBlock Margin="20, 0, 0, 0" Text="{Binding ElementName=oldMaps, Path=SelectedItem.Year}"/>
+                <TextBlock Margin="10, 10, 0, 0" Text="{Binding ElementName=oldMaps, Path=SelectedItem.Description}"/>
+            </StackPanel>
+            <StackPanel>
+                <Viewbox Stretch="Uniform" Margin="2">
+                    <Image Source="{Binding ElementName=oldMaps, Path=SelectedItem.Picture}"/>
+                </Viewbox>
+            </StackPanel>
+        </DockPanel>
+    </Grid>
+</Window>
