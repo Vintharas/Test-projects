@@ -1,0 +1,10 @@
+﻿<Window x:Class="Chapter16_DatePickerControl.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="The DatePicker Control" Height="350" Width="525">
+    <StackPanel>
+        <DatePicker Name="datePicker" HorizontalAlignment="Left" Width="110"/>
+        <TextBlock Text="Selected Date" FontWeight="Bold" Margin="5,5,5,2"/>
+        <TextBlock Margin="20,0" Text="{Binding ElementName=datePicker, Path=SelectedDate}"/>
+    </StackPanel>
+</Window>
