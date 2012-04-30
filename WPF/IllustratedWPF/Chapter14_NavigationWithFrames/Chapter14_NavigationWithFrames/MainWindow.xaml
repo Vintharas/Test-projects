@@ -1,0 +1,17 @@
+﻿<Window x:Class="Chapter14_NavigationWithFrames.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Navigation with Frames" Height="350" Width="525">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBlock TextWrapping="Wrap" Margin="10">
+            This is an example illustrating how Frames work. Frames allow you to provide navigation functionalities within other windows or ContentControls.
+            Since it is itself a ContentControl object, it can be placed wherever any other ContentControl would.
+        </TextBlock>
+        <!-- We use the Source property to set which will be the initial page to show in the Frame -->
+        <Frame Grid.Row="1" Source="Page1.xaml" Margin="10" BorderBrush="Orange" BorderThickness="1"/>
+    </Grid>
+</Window>
