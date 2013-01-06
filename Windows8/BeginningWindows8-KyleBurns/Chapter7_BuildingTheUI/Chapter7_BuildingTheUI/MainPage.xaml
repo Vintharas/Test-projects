@@ -1,0 +1,67 @@
+﻿<!-- 
+    
+    Beginning Windows 8 Development - Kyle Burns
+    Chapter 7 - Building the User Interface
+    Exercise: Working With Styles
+    
+    Practicing common XAML styling. Good quick refresher for styles and datatemplates.
+    
+    -->
+<Page
+    x:Class="Chapter7_BuildingTheUI.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Chapter7_BuildingTheUI"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DataContext="{d:DesignData Source=DummyDataSample.xaml}">
+
+
+    
+    <!-- Page-Level Style Definition: Used for sharing styles within a singular page -->
+    <Page.Resources>
+        <Style x:Key="BigAssTextStyle" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Helvetica"/>
+            <Setter Property="FontSize" Value="48"/>    
+        </Style>
+        <!-- This style inherits all properties from the previous style -->
+        <Style x:Key="SmallerBigAssTextStyle" TargetType="TextBlock" BasedOn="{StaticResource BigAssTextStyle}">
+            <Setter Property="FontSize" Value="24" />
+        </Style>
+        <!-- If we don't use the x:Key property then the Style becomes the default for the TargetType specified -->
+        <!-- Commented this implicit style so the one in the page-level will be used instead
+        <Style TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Cambria"></Setter>
+            <Setter Property="FontSize" Value="72"></Setter>
+        </Style> -->
+        
+        
+        <!-- DataTemplate: Elements that are used to define the layout for each repeating 
+                           item in an ItemsControl derived class such as a ListView, GridView or FlipView 
+        -->
+        <DataTemplate x:Key="BigAssGridViewItemsDataTemplate">
+            <TextBlock Style="{StaticResource BigAssTextStyle}" Text="{Binding Title}"></TextBlock>
+        </DataTemplate>
+    </Page.Resources>
+    
+    <StackPanel Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <TextBlock Style="{StaticResource PageHeaderTextStyle}">Examples with Styles</TextBlock>
+        <TextBlock>No Style Specified</TextBlock>
+        <TextBlock Style="{StaticResource BigAssTextStyle}">BigAssText Style specified</TextBlock>
+        <TextBlock Style="{StaticResource SmallerBigAssTextStyle}" Margin="0,0,0,100">SmallerBigAssText Style specified</TextBlock>
+        
+        <!-- GriView with example of inline DateTemplate -->
+        <TextBlock Style="{StaticResource PageHeaderTextStyle}">Examples with DataTemplates</TextBlock>
+        <GridView Height="150" ItemsSource="{Binding Items}">
+            <GridView.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Title}" Foreground="Yellow"></TextBlock>
+                </DataTemplate>
+            </GridView.ItemTemplate>
+        </GridView>
+        
+        <!-- GridView with example of reference to DataTemplate -->
+        <GridView Height="150" ItemTemplate="{StaticResource BigAssGridViewItemsDataTemplate}" ItemsSource="{Binding Items}"/>
+    </StackPanel>
+</Page>

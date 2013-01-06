@@ -1,0 +1,40 @@
+﻿<!-- 
+    
+    Beginning Windows 8 Development - Kyle Burns
+    Chapter 7 - Building the User Interface
+    Exercise: Working With Styles
+    
+    Practicing common XAML styling. Good quick refresher for styles and datatemplates.
+    
+    -->
+    
+<Application
+    x:Class="Chapter7_BuildingTheUI.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Chapter7_BuildingTheUI">
+
+    
+    <!-- Application-Level Style Definition: Here you can create, or reference via MergedDictionaries, Style elements that can be applied throughout the application -->
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+
+                <!-- 
+                    Styles that define common aspects of the platform look and feel
+                    Required by Visual Studio project and item templates
+                 -->
+                <ResourceDictionary Source="Common/StandardStyles.xaml"/>
+                <ResourceDictionary Source="Common/MyStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <!-- You can add application-level Styles here -->
+            <!-- This implicit style would be used if no other implicit styles have been set at the page level, the page-level and app-level implicit styles are never merged -->
+            <!--
+            <Style TargetType="TextBlock">
+                <Setter Property="Foreground" Value="Yellow"></Setter>
+            </Style>
+            -->
+            <!-- It is however recommended to reference external xaml files with styles as you would do when referencing CSS stylesheets -->
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

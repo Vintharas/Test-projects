@@ -1,0 +1,8 @@
+﻿<chapter7BuildingTheUi:DummyData xmlns:chapter7BuildingTheUi="using:Chapter7_BuildingTheUI">
+    <chapter7BuildingTheUi:DummyData.Items>
+        <chapter7BuildingTheUi:Item Title="Item 1"/>
+        <chapter7BuildingTheUi:Item Title="Item 2"/>
+        <chapter7BuildingTheUi:Item Title="Item 3"/>
+        <chapter7BuildingTheUi:Item Title="Item 4"/>
+    </chapter7BuildingTheUi:DummyData.Items>
+</chapter7BuildingTheUi:DummyData>
