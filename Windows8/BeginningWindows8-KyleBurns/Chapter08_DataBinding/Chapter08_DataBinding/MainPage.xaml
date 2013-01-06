@@ -1,0 +1,51 @@
+﻿<!--
+    Beginning Windows 8 a App Dev
+    Chapter 8. Data Binding
+    
+    #2. Exercise: Using The Binding Element
+    
+        Binding XAML elements to a datasource using the Binding element
+    
+    -->
+    <Page
+    x:Class="Chapter08_DataBinding.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Chapter08_DataBinding"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:common="using:Chapter08_DataBinding.Common"
+    mc:Ignorable="d">
+        
+        <Page.Resources>
+            <common:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        </Page.Resources>
+
+    <StackPanel Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <TextBlock Style="{StaticResource PageHeaderTextStyle}" Text="Product Search (Databinding Sample)"/>
+        <TextBox Name="txtCriteria" />
+        <Button Name="btnSearch" 
+                Content="Search" 
+                Click="btnSearch_Click" 
+                HorizontalAlignment="Stretch"
+                FontSize="24"/>
+        <!-- Binding datasource of listview to SearchResultItems property of the page DataContext -->
+        <ListView Name="lvSearchResults" ItemsSource="{Binding SearchResultItems}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <!-- Binding Text of the TextBox used as datatemplate to the Title property of its datasource -->
+                    <TextBlock Text="{Binding Title}"></TextBlock>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <!-- Binding the Text of the TextBlock to the summary of the item selected in the listview -->
+        <TextBlock Style="{StaticResource ItemTextStyle}" Text="{Binding ElementName=lvSearchResults,Path=SelectedItem.Summary}" Margin="0,0,0,150">
+        </TextBlock>
+        
+        <!-- ValueConverter sample -->
+        <TextBlock Style="{StaticResource PageHeaderTextStyle}" Text="Value Converters Sample"/>
+        <CheckBox Name="cbShowShape" Content="Show Shape" IsChecked="True"></CheckBox>
+        <Rectangle Height="100" Width="100" Fill="Yellow" HorizontalAlignment="Left"
+                   Visibility="{Binding IsChecked, ElementName=cbShowShape,Converter={StaticResource BooleanToVisibilityConverter}}"></Rectangle>
+    </StackPanel>
+</Page>
