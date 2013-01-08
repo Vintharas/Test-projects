@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using MovieBrowser.Data;
+using MovieBrowser.ViewModels;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
@@ -68,6 +70,10 @@ namespace MovieBrowser
                         //Assume there is no state and continue
                     }
                 }
+                // Initialize datasource
+                var viewModel = this.Resources["MovieBrowserViewModel"] as MovieBrowserViewModel;
+                viewModel.ViewTitle += OnTitleView;
+                viewModel.ViewGenre += OnGenreView;
 
                 // Place the frame in the current Window
                 Window.Current.Content = rootFrame;
@@ -98,6 +104,21 @@ namespace MovieBrowser
             var deferral = e.SuspendingOperation.GetDeferral();
             await SuspensionManager.SaveAsync();
             deferral.Complete();
+        }
+
+
+        private void OnGenreView(object sender, ViewGenreEventArgs e)
+        {
+            var rootFrame = Window.Current.Content as Frame;
+            if (rootFrame != null)
+                rootFrame.Navigate(typeof (GroupDetailPage));
+        }
+
+        private void OnTitleView(object sender, ViewTitleEventArgs e)
+        {
+            var rootFrame = Window.Current.Content as Frame;
+            if (rootFrame != null)
+                rootFrame.Navigate(typeof (ItemDetailPage));
         }
     }
 }

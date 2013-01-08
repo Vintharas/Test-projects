@@ -1,0 +1,55 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MovieBrowser.Common">
+    
+    <!-- Data template for item details -->
+    <DataTemplate x:Key="TitleDetailTemplate">
+        <StackPanel Orientation="Vertical">
+            <TextBlock Style="{StaticResource HeaderTextStyle}" Text="{Binding Name}"/>
+            <Image Height="150" Width="110" Stretch="UniformToFill"
+                   Source="{Binding BoxArt.LargeUrl}"/>
+            <TextBlock Text="{Binding Synopsis}" />
+        </StackPanel>
+    </DataTemplate>
+    
+    
+    <!-- Data template for group details -->
+    <DataTemplate x:Key="TitleGenreGridViewTemplate">
+        <Grid Width="125">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="65" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}">
+                <Image Height="90" Width="65" Stretch="UniformToFill" Source="{Binding BoxArt.MediumUrl}" />
+            </Border>
+            <StackPanel Grid.Column="1" Orientation="Vertical">
+                <TextBlock Style="{StaticResource TitleTextStyle}" Text="{Binding Name}" />
+                <TextBlock Text="{Binding ShortSynopsis}" />
+            </StackPanel>
+        </Grid>
+    </DataTemplate>
+    
+    <!-- Data template for genre list -->
+    <DataTemplate x:Key="TitleGenreListViewTemplate">
+        <StackPanel Orientation="Vertical">
+            <TextBlock Style="{StaticResource TitleTextStyle}" Text="{Binding Name}" />
+            <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}">
+                <Image Height="90" Width="65" Stretch="UniformToFill" Source="{Binding BoxArt.MediumUrl}" />
+            </Border>
+            <TextBlock Text="{Binding ShortSynopsis}" />
+        </StackPanel>
+    </DataTemplate>
+    
+    <!-- Data template for title grouped items, from when a user selects a genre -->
+    <DataTemplate x:Key="TitleGroupedItemsTemplate">
+        <StackPanel Orientation="Vertical">
+            <TextBlock Style="{StaticResource TitleTextStyle}" Text="{Binding ShortName}" />
+            <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}">
+                <Image Height="53" Width="38" Stretch="UniformToFill" Source="{Binding BoxArt.SmallUrl}" />
+             </Border>
+        </StackPanel>
+    </DataTemplate>
+    
+</ResourceDictionary>

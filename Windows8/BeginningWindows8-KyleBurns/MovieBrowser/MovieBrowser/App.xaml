@@ -3,7 +3,8 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:MovieBrowser"
-    xmlns:localData="using:MovieBrowser.Data">
+    xmlns:localData="using:MovieBrowser.Data"
+    xmlns:model="using:MovieBrowser.DataModel" xmlns:viewModels="using:MovieBrowser.ViewModels">
 
     <Application.Resources>
         <ResourceDictionary>
@@ -14,11 +15,13 @@
                     Required by Visual Studio project and item templates
                  -->
                 <ResourceDictionary Source="Common/StandardStyles.xaml"/>
+                <ResourceDictionary Source="Common/MovieBrowserStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
             <!-- Application-specific resources -->
 
             <x:String x:Key="AppName">MovieBrowser</x:String>
+            <viewModels:MovieBrowserViewModel x:Key="MovieBrowserViewModel"/>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

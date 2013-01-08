@@ -1,7 +1,7 @@
 ﻿<common:LayoutAwarePage
     x:Name="pageRoot"
     x:Class="MovieBrowser.GroupedItemsPage"
-    DataContext="{Binding DefaultViewModel, RelativeSource={RelativeSource Self}}"
+    DataContext="{StaticResource MovieBrowserViewModel}"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:MovieBrowser"
@@ -19,10 +19,11 @@
         -->
         <CollectionViewSource
             x:Name="groupedItemsViewSource"
-            Source="{Binding Groups}"
+            Source="{Binding Genres}"
             IsSourceGrouped="true"
-            ItemsPath="TopItems"
-            d:Source="{Binding AllGroups, Source={d:DesignInstance Type=data:SampleDataSource, IsDesignTimeCreatable=True}}"/>
+            ItemsPath="Titles"
+            d:Source="{Binding Genres, Source={d:DesignInstance Type=data:SampleMovieDataSource, IsDesignTimeCreatable=True}}"/>
+       
     </Page.Resources>
 
     <!--
@@ -44,7 +45,7 @@
             Grid.RowSpan="2"
             Padding="116,137,40,46"
             ItemsSource="{Binding Source={StaticResource groupedItemsViewSource}}"
-            ItemTemplate="{StaticResource Standard250x250ItemTemplate}"
+            ItemTemplate="{StaticResource TitleGroupedItemsTemplate}"
             SelectionMode="None"
             IsSwipeEnabled="false"
             IsItemClickEnabled="True"
@@ -62,12 +63,13 @@
                             <Grid Margin="1,0,0,6">
                                 <Button
                                     AutomationProperties.Name="Group Title"
+                                    Content="{Binding Name}"
                                     Click="Header_Click"
-                                    Style="{StaticResource TextPrimaryButtonStyle}" >
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="{Binding Title}" Margin="3,-7,10,10" Style="{StaticResource GroupHeaderTextStyle}" />
+                                    Style="{StaticResource TextButtonStyle}" >
+                                    <!--StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding Name}" Margin="3,-7,10,10" Style="{StaticResource GroupHeaderTextStyle}" />
                                         <TextBlock Text="{StaticResource ChevronGlyph}" FontFamily="Segoe UI Symbol" Margin="0,-7,0,10" Style="{StaticResource GroupHeaderTextStyle}"/>
-                                    </StackPanel>
+                                    </StackPanel-->
                                 </Button>
                             </Grid>
                         </DataTemplate>
@@ -91,7 +93,7 @@
             Margin="0,-10,0,0"
             Padding="10,0,0,60"
             ItemsSource="{Binding Source={StaticResource groupedItemsViewSource}}"
-            ItemTemplate="{StaticResource Standard80ItemTemplate}"
+            ItemTemplate="{StaticResource TitleGroupedItemsTemplate}"
             SelectionMode="None"
             IsSwipeEnabled="false"
             IsItemClickEnabled="True"
@@ -104,12 +106,13 @@
                             <Grid Margin="7,7,0,0">
                                 <Button
                                     AutomationProperties.Name="Group Title"
+                                    Content="{Binding Name}"
                                     Click="Header_Click"
-                                    Style="{StaticResource TextPrimaryButtonStyle}">
-                                    <StackPanel Orientation="Horizontal">
+                                    Style="{StaticResource TextButtonStyle}">
+                                    <!--StackPanel Orientation="Horizontal">
                                         <TextBlock Text="{Binding Title}" Margin="3,-7,10,10" Style="{StaticResource GroupHeaderTextStyle}" />
                                         <TextBlock Text="{StaticResource ChevronGlyph}" FontFamily="Segoe UI Symbol" Margin="0,-7,0,10" Style="{StaticResource GroupHeaderTextStyle}"/>
-                                    </StackPanel>
+                                    </StackPanel-->
                                 </Button>
                             </Grid>
                         </DataTemplate>

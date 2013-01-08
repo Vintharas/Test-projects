@@ -1,7 +1,7 @@
 ﻿<common:LayoutAwarePage
     x:Name="pageRoot"
     x:Class="MovieBrowser.ItemDetailPage"
-    DataContext="{Binding DefaultViewModel, RelativeSource={RelativeSource Self}}"
+    DataContext="{StaticResource MovieBrowserViewModel}"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:MovieBrowser"
@@ -10,14 +10,15 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
+    <!--d:DataContext="{d:DesignData Source=SampleData/SampleTitles.xaml}"-->
 
     <Page.Resources>
 
         <!-- Collection of items displayed by this page -->
         <CollectionViewSource
             x:Name="itemsViewSource"
-            Source="{Binding Items}"
-            d:Source="{Binding AllGroups[0].Items, Source={d:DesignInstance Type=data:SampleDataSource, IsDesignTimeCreatable=True}}"/>
+            Source="{Binding SelectedGenre.Titles}"
+            d:Source="{Binding Genres[0].Titles, Source={d:DesignInstance Type=data:SampleMovieDataSource, IsDesignTimeCreatable=True}}"/>
     </Page.Resources>
 
     <!--
@@ -27,8 +28,8 @@
     -->
     <Grid
         Style="{StaticResource LayoutRootStyle}"
-        DataContext="{Binding Group}"
-        d:DataContext="{Binding AllGroups[0], Source={d:DesignInstance Type=data:SampleDataSource, IsDesignTimeCreatable=True}}">
+        DataContext="{Binding SelectedGenre}"
+        d:DataContext="{Binding Genres[0], Source={d:DesignInstance Type=data:SampleMovieDataSource, IsDesignTimeCreatable=True}}">
 
         <Grid.RowDefinitions>
             <RowDefinition Height="140"/>
@@ -46,7 +47,9 @@
             AutomationProperties.Name="Item Details"
             TabIndex="1"
             Grid.RowSpan="2"
-            ItemsSource="{Binding Source={StaticResource itemsViewSource}}">
+            ItemsSource="{Binding Source={StaticResource itemsViewSource}}"
+            ItemTemplate="{StaticResource TitleDetailTemplate}"
+            SelectedItem="{Binding SelectedTitle}">
 
             <FlipView.ItemContainerStyle>
                 <Style TargetType="FlipViewItem">
@@ -54,17 +57,15 @@
                 </Style>
             </FlipView.ItemContainerStyle>
 
+            <!--
             <FlipView.ItemTemplate>
                 <DataTemplate>
 
-                    <!--
-                        UserControl chosen as the templated item because it supports visual state management
-                        Loaded/unloaded events explicitly subscribe to view state updates from the page
-                    -->
+                    
+                    
                     <UserControl Loaded="StartLayoutUpdates" Unloaded="StopLayoutUpdates">
                         <ScrollViewer x:Name="scrollViewer" Style="{StaticResource HorizontalScrollViewerStyle}" Grid.Row="1">
 
-                            <!-- Content is allowed to flow across as many columns as needed -->
                             <common:RichTextColumns x:Name="richTextColumns" Margin="117,0,117,47">
                                 <RichTextBlock x:Name="richTextBlock" Width="560" Style="{StaticResource ItemRichTextStyle}" IsTextSelectionEnabled="False">
                                     <Paragraph>
@@ -83,7 +84,6 @@
                                     </Paragraph>
                                 </RichTextBlock>
 
-                                <!-- Additional columns are created from this template -->
                                 <common:RichTextColumns.ColumnTemplate>
                                     <DataTemplate>
                                         <RichTextBlockOverflow Width="560" Margin="80,0,0,0">
@@ -97,12 +97,10 @@
 
                             <VisualStateManager.VisualStateGroups>
 
-                                <!-- Visual states reflect the application's view state inside the FlipView -->
                                 <VisualStateGroup x:Name="ApplicationViewStates">
                                     <VisualState x:Name="FullScreenLandscape"/>
                                     <VisualState x:Name="Filled"/>
 
-                                    <!-- Respect the narrower 100-pixel margin convention for portrait -->
                                     <VisualState x:Name="FullScreenPortrait">
                                         <Storyboard>
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="richTextColumns" Storyboard.TargetProperty="Margin">
@@ -114,7 +112,6 @@
                                         </Storyboard>
                                     </VisualState>
 
-                                    <!-- When snapped, the content is reformatted and scrolls vertically -->
                                     <VisualState x:Name="Snapped">
                                         <Storyboard>
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="richTextColumns" Storyboard.TargetProperty="Margin">
@@ -137,6 +134,10 @@
                     </UserControl>
                 </DataTemplate>
             </FlipView.ItemTemplate>
+            -->
+            
+            
+            
         </FlipView>
 
         <!-- Back button and page title -->
@@ -146,7 +147,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Button x:Name="backButton" Click="GoBack" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Style="{StaticResource BackButtonStyle}"/>
-            <TextBlock x:Name="pageTitle" Text="{Binding Title}" Style="{StaticResource PageHeaderTextStyle}" Grid.Column="1" IsHitTestVisible="false"/>
+            <TextBlock x:Name="pageTitle" Text="{Binding Name}" Style="{StaticResource PageHeaderTextStyle}" Grid.Column="1" IsHitTestVisible="false"/>
         </Grid>
 
         <VisualStateManager.VisualStateGroups>
