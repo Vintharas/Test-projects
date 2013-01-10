@@ -1,0 +1,34 @@
+﻿ <!-- Beginning Windows 8 App Dev C# and XAML - Kyle Burns
+     Chapter 13 - Asynchronous Programming Model
+     Exercise: Using async and await to retrieve an atom feed and 
+            display it in a listview while maintaining a responsive
+            user interface.
+ -->
+    <Page
+    x:Class="Chapter13_AsyncProgrammingModel.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Chapter13_AsyncProgrammingModel"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <StackPanel Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap"
+            Text="Async Rss Reader" 
+            Style="{StaticResource PageHeaderTextStyle}"/>
+        <Button 
+            Content="Retrieve Feed" 
+            HorizontalAlignment="Left"
+            Click = "OnRetrieveButtonClicked" />
+        <ListView x:Name = "FeedList">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock 
+                        Style="{StaticResource HeaderTextStyle}"
+                        Text = "{Binding Title}" />
+                    </DataTemplate>
+            </ListView.ItemTemplate>
+            </ListView>
+    </StackPanel>
+</Page>
