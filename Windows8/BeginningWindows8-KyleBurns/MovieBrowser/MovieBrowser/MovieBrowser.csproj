@@ -131,7 +131,9 @@
     <Compile Include="Common\LayoutAwarePage.cs" />
     <Compile Include="Common\RichTextColumns.cs" />
     <Compile Include="Common\SuspensionManager.cs" />
+    <Compile Include="ServiceAgents\NetflixMovieCatalogServiceAgent.cs" />
     <Compile Include="ServiceAgents\SampleDataMovieCatalogServiceAgent.cs" />
+    <Compile Include="Utility\NetflixXmlParser.cs" />
     <Compile Include="ViewModels\MovieBrowserViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

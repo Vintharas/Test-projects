@@ -46,7 +46,7 @@ namespace MovieBrowser.ViewModels
         }
 
         // constructor that fakes a DI container
-        public MovieBrowserViewModel() : this (new SampleDataMovieCatalogServiceAgent()) { }
+        public MovieBrowserViewModel() : this (new NetflixMovieCatalogServiceAgent()) { }
 
         public MovieBrowserViewModel(IMovieCatalogServiceAgent catalogServiceAgent)
         {
