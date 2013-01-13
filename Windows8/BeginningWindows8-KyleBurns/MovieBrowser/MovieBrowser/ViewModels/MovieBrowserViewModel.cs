@@ -4,17 +4,15 @@ using System.Linq;
 using System.Windows.Input;
 using MovieBrowser.Common;
 using MovieBrowser.Data;
+using MovieBrowser.Interfaces;
 using MovieBrowser.Model;
+using MovieBrowser.ServiceAgents;
 
 namespace MovieBrowser.ViewModels
 {
     public class MovieBrowserViewModel : BindableBase
     {
-        private readonly SampleMovieDataSource catalog = new SampleMovieDataSource();
-        public ObservableCollection<Genre> Genres
-        {
-            get { return catalog.Genres; }
-        }
+        public ObservableCollection<Genre> Genres{ get; private set; }
 
         private Genre selectedGenre;
         public Genre SelectedGenre
@@ -47,7 +45,22 @@ namespace MovieBrowser.ViewModels
                 ViewGenre(this, new ViewGenreEventArgs(genre));
         }
 
-        public MovieBrowserViewModel()
+        // constructor that fakes a DI container
+        public MovieBrowserViewModel() : this (new SampleDataMovieCatalogServiceAgent()) { }
+
+        public MovieBrowserViewModel(IMovieCatalogServiceAgent catalogServiceAgent)
+        {
+            LoadGenres(catalogServiceAgent);
+            DefineNavigationCommands();
+        }
+
+        private void LoadGenres(IMovieCatalogServiceAgent catalogServiceAgent)
+        {
+            Genres = new ObservableCollection<Genre>();
+            catalogServiceAgent.InitiateGenreRetrieval(Genres.Add);
+        }
+
+        private void DefineNavigationCommands()
         {
             SelectGenreCommand = new DelegateCommand(
                 execute: arg =>
@@ -57,17 +70,17 @@ namespace MovieBrowser.ViewModels
                         RaiseViewGenre(genre);
                     },
                 canExecute: arg => arg is Genre
-            );
+                );
             SelectTitleCommand = new DelegateCommand
                 (
-                    arg =>
-                        {
-                            var title = (Title) arg;
-                            SelectedTitle = title;
-                            SelectedGenre = Genres.Where(g => g.Titles.Contains(title)).FirstOrDefault();
-                            RaiseViewTitle(title);
-                        },
-                    arg => arg is Title
+                arg =>
+                    {
+                        var title = (Title) arg;
+                        SelectedTitle = title;
+                        SelectedGenre = Genres.Where(g => g.Titles.Contains(title)).FirstOrDefault();
+                        RaiseViewTitle(title);
+                    },
+                arg => arg is Title
                 );
         }
     }

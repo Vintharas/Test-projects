@@ -116,6 +116,7 @@
     <Compile Include="GroupDetailPage.xaml.cs">
       <DependentUpon>GroupDetailPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Interfaces\IMovieCatalogServiceAgent.cs" />
     <Compile Include="ItemDetailPage.xaml.cs">
       <DependentUpon>ItemDetailPage.xaml</DependentUpon>
     </Compile>
@@ -130,6 +131,7 @@
     <Compile Include="Common\LayoutAwarePage.cs" />
     <Compile Include="Common\RichTextColumns.cs" />
     <Compile Include="Common\SuspensionManager.cs" />
+    <Compile Include="ServiceAgents\SampleDataMovieCatalogServiceAgent.cs" />
     <Compile Include="ViewModels\MovieBrowserViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
