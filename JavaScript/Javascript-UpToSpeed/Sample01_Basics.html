@@ -1,0 +1,142 @@
+<h1>JS Demo</h1>
+<style>
+.alert {
+	background-color: #fffccc;
+	border: 1px solid #990000;
+}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
+<script src="demo.js"></script>
+<script type="text/javascript" charset="utf-8">
+	// Examples from -> http://vimeo.com/47483575
+
+	// Javascript quirk #1. Globalization
+	var message = "A global message";
+	function sayHello()
+	{
+		console.log(message);		
+	}
+	sayHello();
+	// write this on console:
+	//this.message;
+	//this;
+
+	// Javascript quirk #2. Cohercion
+    // == means coherce. 
+    // when comparing variables of different types, types are coherced so the can be compared
+    // 0 == false -> true
+    // "0" == false -> true
+    // "" == false -> true
+    // false == "false" -> false
+    // false == undefined -> false
+    // false == null -> false
+    // typeof(null) -> object
+    // typeof(undefined) -> undefined
+    // null == undefined -> true
+    // note that cohercion doesn't happen with the same types
+    // so "" == "false" -> false
+    // === compares actual values without cohercion
+
+
+    // "", 0, undefined, null -> falsey
+
+
+    // JavaScript quirk #3. Cohercive Math
+    // true == 1 -> true
+    // false == 0 -> true
+    // true + true -> 2
+    // true - true -> 0
+    // true + true == true -> false (lol)
+    // true + true == false -> false (lol)
+    // true - true == false -> true
+    // true * 5 == true -> true
+    // false * 5 == false -> true
+
+
+    // Javascript quirk #4. Hoisting
+    var anotherMessage = "helllo!";
+    function sayHi()
+    {
+    	// what happens here is that Javascript is hoisting our variable, changing our code and
+    	// declaring the anotherMessage at the beginning of the method
+    	// var anotherMessage = undefined;
+    	if (!anotherMessage)
+    	{
+    		var anotherMessage = "there was nothing to say, really...";
+    		console.log(anotherMessage);
+    	}
+
+    }
+    sayHi();
+
+
+    // JavaScript Good Practice #1. Namespacing
+    // You can mimic C# namespaces by assigning variables and methods to an object
+    var psychic = 
+    {
+    	answer: "Probably...",
+    	askQuestion: function(answered){
+    		console.log("The bones tell me..." + this.answer); // beware of the meaning of this in JavaScript! In JavaScript, this is scoped to the function owner
+    		answered(this.answer);
+    	}
+    }
+
+    var debunker = {
+    	answer: "Fraud!",
+    	debunk: function(){
+    		console.log("No way! Fraud! The real answer is: " + this.answer);
+    	}
+    }
+
+	// in this case the owner of the function is 'psychic'
+    //psychic.askQuestion(function(answer)
+    //{
+    //	console.log("Thanks.... that's what I thought: '" + answer + "'");
+    //}); 
+
+
+	// in this case the owner of the function is 
+	psychic.askQuestion(debunker.debunk);
+
+	// "this" is scoped upon invocation. If a function is not invoked as part of a parent container, it is made global (in this case, it's attached to DOMWindow, there's no expicit owner)
+
+	// the way to fix this is to use the following pattern: the revealed module pattern
+	// by using this pattern, "this" gets a fixed owner. (This is called a closure)
+	// (Note how our members become variables, since we are no longer declaring an object, but inside a function)
+	var debunker = function(){
+		answer = "Fraud!";
+		debunk = function()
+		{
+			console.log("No way! Fraud! The real answer is: " + this.answer); 
+		}
+		return {
+			debunk: debunk
+		};
+	}();
+
+	psychic.askQuestion(debunker.debunk);
+
+
+	// JavaScript Quirk #5. Semi-colon insertion
+	// if for instance you do:
+	// return 
+	// {
+	//    debunk: debunk
+	// };
+	// javascript is going to add a semicolon after the return and break our code
+	// that's why we usually write the { in the end of the current line, instead of in the next line
+
+
+	// JavaScript interesting tools -> JsFiddle
+	// Interactive tool for programming javascript, use multiple libraries and with jslint that valiades your javascript
+
+
+	// JavaScript Good practice #2. Unobstrusive Javascript => use jQuery
+	// JavaScript Good practice #3. Always use a CDN
+
+</script>
+
+<!-- example of unobstrusive javascript -->
+<div id="message"></div>
+<button id="messageSetter">Set Message</button>
