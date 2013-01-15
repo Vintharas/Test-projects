@@ -45,9 +45,9 @@
     <!-- Data template for title grouped items, from when a user selects a genre -->
     <DataTemplate x:Key="TitleGroupedItemsTemplate">
         <StackPanel Orientation="Vertical">
-            <TextBlock Style="{StaticResource TitleTextStyle}" Text="{Binding ShortName}" />
-            <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}">
-                <Image Height="53" Width="38" Stretch="UniformToFill" Source="{Binding BoxArt.SmallUrl}" />
+            <TextBlock Style="{StaticResource TitleTextStyle}" Text="{Binding ShortName}" Margin="0,0,0,10" />
+            <Border>
+                <Image Width="100" Stretch="UniformToFill" Source="{Binding BoxArt.MediumUrl}" />
              </Border>
         </StackPanel>
     </DataTemplate>

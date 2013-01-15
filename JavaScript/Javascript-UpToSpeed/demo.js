@@ -22,10 +22,15 @@
 			$("#message").attr("class", "alert");
 			$("#message").html(message).effect("highlight");
 		};
+		privateMethod = function(){
+			alert("Oh no! I'm private!");  // This is going to call the alert() method of the notifier
+		}
+
 		return {
 			info: info,
 			alert: alert,
-			init: init
+			init: init,
+			privateMethod: privateMethod
 		}
 	}();
 
@@ -33,9 +38,11 @@
 	$(function(){
 
 		// init
-		notifier.info("Welcome!");
+		notifierTwo.init();
+		// cannot call notifierTwo.privateMethod();
+		// you could expose it if you wanted (by adding it to the return)
 
 		$("#messageSetter").click(function(){
-			notifier.alert("You clicked me!");
+			notifierTwo.alert("You clicked me!");
 		})
 	})
