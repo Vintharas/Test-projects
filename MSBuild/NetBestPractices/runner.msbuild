@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Project DefaultTargets="Hello"
+         xmlns="http://schemas.microsoft.com/developer/msbuild/2003"
+         ToolsVersion="4.0">
+    <!-- A project is composed of Targets -->
+    <Target Name="Hello">
+    	<!-- that in turn are composed of Tasks -->
+    	<!-- A simple task that just prints a message to the output -->
+    	<Message Text="Hello world!" Importance="high"/>
+    </Target>
+</Project>
