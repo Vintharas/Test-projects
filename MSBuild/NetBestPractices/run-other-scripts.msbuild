@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- This script tells MSbuild to go and run other build scripts associated to two visual studio projects -->
+<Project DefaultTargets="BuildAll" 
+    xmlns="http://schemas.microsoft.com/developer/msbuild/2003"
+    ToolsVersion="4.0">
+
+	<ItemGroup>
+		<ProjectToBuild Include=".\AVisualStudioProject\AVisualStudioProject.csproj"/>
+		<ProjectToBuild Include=".\AnotherVisualStudioProject\AnotherVisualStudioProject.csproj"/>
+	</ItemGroup>
+
+    <!-- This target is telling MSBuild to execute the "Build" Target of the referenced MSBuild scripts (the VS projects) -->
+	<Target Name="BuildAll">
+        <!-- task to execute MSBuild -->
+		<MSBuild Projects="@(ProjectToBuild)"
+            Targets="Build"
+            Properties="Configuration=DEBUG"
+			/>
+	</Target>
+</Project>
