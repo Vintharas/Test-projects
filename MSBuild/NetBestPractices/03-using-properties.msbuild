@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- see how there are several default targets defined -->
+<Project DefaultTargets="First;Second;Third"
+         xmlns="http://schemas.microsoft.com/developer/msbuild/2003"
+         ToolsVersion="4.0">
+    
+    <!-- Properties are used within MSBuild scripts to store values and pass values to tasks -->
+    <!-- this is an example of a global property -->
+    <PropertyGroup>
+        <!-- the property's name is GlobalPoperty and its value is GLOBAL -->
+        <GlobalProperty>GLOBAL</GlobalProperty>
+    </PropertyGroup>
+
+    <Target Name="First">
+        <Message Text="In the First target the global property is: '$(GlobalProperty)'" Importance="high"/>
+        <Message Text="In the First target the local property is: '$(LocalProperty)'" Importance="high"/>
+    </Target>
+
+    <Target Name="Second">
+        <!-- This property is set within a target. It doesn't really matter where a property is set. Once set, its value remains until the end of the script -->
+        <PropertyGroup>
+            <LocalProperty>LOCAL</LocalProperty>
+        </PropertyGroup> 
+        <Message Text="In the First target the global property is: '$(GlobalProperty)'" Importance="high"/>
+        <Message Text="In the First target the local property is: '$(LocalProperty)'" Importance="high"/>
+    </Target>
+
+    <Target Name="Third">
+        <Message Text="In the First target the global property is: '$(GlobalProperty)'" Importance="high"/>
+        <Message Text="In the First target the local property is: '$(LocalProperty)'" Importance="high"/>
+    </Target>
+
+</Project>
