@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Project DefaultTargets="CopyToOutput"
+         xmlns="http://schemas.microsoft.com/developer/msbuild/2003"
+         ToolsVersion="4.0">
+    
+    <PropertyGroup> 
+        <SourcePath>.\Content</SourcePath> 
+        <OutputPath>.\Output</OutputPath> 
+        <DefineConstants>DEBUG;TRACE</DefineConstants> 
+    </PropertyGroup> 
+    <!-- Item group that defines a named list of items -->
+    <ItemGroup> 
+        <!-- the name of the items is defined by the name of the child element, in this case ContentToInclude -->
+        <!-- the Include attribute tells MSBuild to include all *.ico and *.bmp that can be found recursively within the SourcePath folder -->
+        <ContentToInclude Include="$(SourcePath)\**\*.ico" /> 
+        <ContentToInclude Include="$(SourcePath)\**\*.bmp" /> 
+    </ItemGroup> 
+
+    <ItemGroup> 
+        <ContentToExclude Include="$(SourcePath)\**\*.gif" /> 
+        <ContentToExclude Include="$(SourcePath)\**\Webcontrol*.bmp" /> 
+    </ItemGroup> 
+    
+    <Target Name="First"> 
+        <Message Text="In the DefineConstants property is: '$(DefineConstants)'" Importance="high" /> 
+    </Target> 
+
+    <Target Name="Second"> 
+        <Message Text="In the ContentToInclude is: '@(ContentToInclude)'" Importance="high" /> 
+    </Target> 
+
+    <Target Name="Third"> 
+        <Message Text="In the ContentToExclude is: '@(ContentToExclude)'" Importance="high" /> 
+    </Target> 
+
+    <!-- Targets that copies the files defined in the ContentToInclude ItemGroup, excluding the files
+    in the ContentToExclude ItemGroup folder -->
+    <Target Name="CopyToOutput" DependsOnTargets="First;Second;Third;Clean" > 
+        <ItemGroup> 
+            <ContentFiles Include="@(ContentToInclude)" Exclude="@(ContentToExclude)" /> 
+        </ItemGroup> 
+        <Message Text="In the ContentFiles is: '@(ContentFiles)'" Importance="high" /> 
+        <Copy SourceFiles="@(ContentFiles)" DestinationFiles="@(ContentFiles->'$(OutputPath)\%(RecursiveDir)%(Filename)%(Extension)')" /> 
+    </Target> 
+
+    <!-- Clean target, when executed it cleans the output path -->
+    <Target Name="Clean" > 
+        <RemoveDir Condition="Exists('$(OutputPath)')" Directories="$(OutputPath)" /> 
+    </Target>
+
+</Project>
