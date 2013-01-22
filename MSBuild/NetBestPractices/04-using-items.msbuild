@@ -36,6 +36,7 @@
 
     <!-- Targets that copies the files defined in the ContentToInclude ItemGroup, excluding the files
     in the ContentToExclude ItemGroup folder -->
+    <!-- Note how the DependsOnTargets attribute triggeres the execution of the other targets -->
     <Target Name="CopyToOutput" DependsOnTargets="First;Second;Third;Clean" > 
         <ItemGroup> 
             <ContentFiles Include="@(ContentToInclude)" Exclude="@(ContentToExclude)" /> 

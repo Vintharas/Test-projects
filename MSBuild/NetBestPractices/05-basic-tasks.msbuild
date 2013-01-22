@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Project DefaultTargets="Awesome"
+         xmlns="http://schemas.microsoft.com/developer/msbuild/2003"
+         ToolsVersion="4.0">
+    
+         <Target Name="Awesome">
+            <!-- Basic tasks -->
+            <!-- Message --> <!-- writes message to the log -->
+            <!-- Warning --> <!-- writes a warning to the log based on an evaluated condition -->
+            <!-- Error --> <!-- stops the build based on an evaluated condition and writes an error to the log -->
+            <!-- Exec --> <!-- runs a program or command with the specified arguments -->
+            <!-- CallTarget --> <!-- Invokes a target in the project file -->
+            <!-- MSBuild --> <!-- Invokes targest in another project file -->
+            <!-- Copy --> <!-- copies files from a source to a destination -->
+            <!-- Move --> <!-- moves files to a new location -->
+            <!-- Delete --> <!-- deletes files -->
+            <!-- MakeDir --> <!-- creates a directory -->
+            <!-- RemoveDir --> <!-- removes a directory and all of its files and subdirectories -->
+            <!-- ReadLinesFromFile --> <!-- reads from a text file -->
+            <!-- The basic tasks can be extended via third-party tasks provided in task libraries --> 
+         </Target>
+
+</Project>
