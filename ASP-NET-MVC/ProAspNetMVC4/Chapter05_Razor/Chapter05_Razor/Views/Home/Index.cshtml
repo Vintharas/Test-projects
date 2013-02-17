@@ -1,0 +1,22 @@
+﻿@model Chapter05_Razor.Models.Barbarian
+
+@{
+    ViewBag.Title = "Hello Conan!";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div>
+        Hither came @Model.Name @Model.Description , to tread the jeweled thrones of the Earth under his sandalled feet.
+    </div>
+    @Html.ActionLink("Go to Weapon and armor", "WeaponAndArmor")
+    @Html.ActionLink("Go to Profile", "PlayerProfile")
+    @Html.ActionLink("Top 4 Barbarians", "List")
+</body>
+</html>

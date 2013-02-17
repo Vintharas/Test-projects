@@ -1,0 +1,35 @@
+﻿@model Chapter05_Razor.Models.Barbarian
+
+@{
+    ViewBag.Title = "Player Profile";
+}
+
+<h2>Player Profile</h2>
+
+<table> 
+    <thead> 
+        <tr><th colspan="2">Profile</th></tr> 
+    </thead> 
+    <tbody> 
+        <tr><td>Name</td><td>@Model.Name</td></tr> 
+        <tr><td>Description</td><td>@Model.Description</td></tr> 
+        <tr><td>Weapon</td><td>@Model.Weapon</td></tr>
+        <tr><td>Armor</td><td>@Model.Armor</td></tr>
+        <tr> 
+        <td>Status</td> 
+            <td>
+                @if (@Model.HitPoints >= 75) 
+                {
+                    @Model.Name @: looks perfectly healthy
+                } 
+                else if (@Model.HitPoints < 75 && @Model.HitPoints >= 25) {
+                    @Model.Name @: looks hurt and walks with difficulty
+                } 
+                else 
+                {
+                    @Model.Name @: looks nearly dead, he can barely stand and ocassionaly looks into the void, as if seeing something beyond our sight
+                }
+            </td> 
+        </tr> 
+    </tbody> 
+</table>

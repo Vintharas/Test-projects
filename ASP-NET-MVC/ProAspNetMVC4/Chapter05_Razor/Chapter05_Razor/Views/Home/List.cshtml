@@ -1,0 +1,12 @@
+﻿@model System.Collections.Generic.IList<Chapter05_Razor.Models.Barbarian>
+
+@{
+    ViewBag.Title = "Top 4 Barbarians";
+}
+
+<ol>
+    @foreach (var b in @Model)
+    {
+        <li>@b.Name</li>
+    }
+</ol>

@@ -1,0 +1,10 @@
+﻿@model Chapter05_Razor.Models.Barbarian
+
+@{
+    ViewBag.Title = "Weapon And Armor!";
+    Layout = "~/Views/_BasicLayout.cshtml";
+}
+
+<h2>@Model.Name's Weapon And Armor</h2>
+<p>Weapon: @Model.Weapon</p>
+<p>Armor: @Model.Armor</p>
