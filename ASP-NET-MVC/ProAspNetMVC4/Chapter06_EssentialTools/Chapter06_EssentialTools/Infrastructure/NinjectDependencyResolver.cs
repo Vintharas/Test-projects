@@ -20,6 +20,15 @@ namespace Chapter06_EssentialTools.Infrastructure
         private void AddBindings()
         {
             kernel.Bind<IValueCalculator>().To<LinqValueCalculator>();
+            // This binding for IDiscountHelper would act as default
+            kernel.Bind<IDiscountHelper>()
+                  .To<DefaultDiscountHelper>()
+                  .WithPropertyValue("DiscountSize", 10M); // Passing properties when object is constructed
+            // This binding for IDiscountHelper would be preferred for LinqValueCalculator
+            kernel.Bind<IDiscountHelper>()
+                .To<AnotherDefaultDiscountHelper>()
+                .WhenInjectedInto<LinqValueCalculator>()             // Conditional Binding
+                .WithConstructorArgument("discountSize", 50M);       // Passing parameters to constructor
         }
 
         public object GetService(Type serviceType)

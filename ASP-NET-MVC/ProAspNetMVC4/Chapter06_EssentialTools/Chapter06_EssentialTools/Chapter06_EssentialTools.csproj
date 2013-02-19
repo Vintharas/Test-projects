@@ -115,7 +115,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\DefaultDiscountHelper.cs" />
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
+    <Compile Include="Interfaces\IDiscountHelper.cs" />
     <Compile Include="Interfaces\IValueCalculator.cs" />
     <Compile Include="Models\LinqValueCalculator.cs" />
     <Compile Include="Models\Product.cs" />
