@@ -116,6 +116,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\DefaultDiscountHelper.cs" />
+    <Compile Include="Infrastructure\MinimumDiscountHelper.cs" />
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
     <Compile Include="Interfaces\IDiscountHelper.cs" />
     <Compile Include="Interfaces\IValueCalculator.cs" />
