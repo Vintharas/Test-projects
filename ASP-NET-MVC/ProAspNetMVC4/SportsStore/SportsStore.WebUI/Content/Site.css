@@ -97,6 +97,11 @@ div.pager A.selected {
      color: White;
 }
 
+div.item form { float:right; } 
+div.item input { 
+color:White; background-color: #333; border: 1px solid black; cursor:pointer; 
+}
+
 /* nav styles */
 
 nav#categories { float: left; width: 8em; padding: .3em; }
@@ -115,8 +120,23 @@ nav#categories a.selected { background-color: #666; color: White; }
 nav#categories a:hover { background-color: #CCC; } 
 nav#categories a.selected:hover { background-color: #666; } 
 
+/*  Cart styles */
+
+h2 { margin-top: 0.3em } 
+tfoot td { border-top: 1px dotted gray; font-weight: bold; } 
+.action-buttons A, input.action-buttons { 
+    font: .8em Arial; 
+    color: White; 
+    margin: .5em; 
+    text-decoration: none; 
+    padding: .15em 1.5em .2em 1.5em; 
+    background-color: #353535; 
+    border: 1px solid black; 
+}
+
 /* Styles for basic forms
 -----------------------------------------------------------*/
+
 fieldset {
     border: 1px solid #ddd;
     padding: 0 1.4em 1.4em 1.4em;
