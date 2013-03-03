@@ -58,6 +58,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Controllers\NavControllerTest.cs" />
     <Compile Include="Controllers\ProductControllerTest.cs" />
     <Compile Include="HtmlHelpers\PagingHelpersTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -1,4 +1,58 @@
-﻿body {
+﻿/* RESET */
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+
+
+
+/* SportsStore */
+body {
     font-size: .85em;
     font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
     color: #232323;
@@ -46,6 +100,20 @@ div.pager A.selected {
 /* nav styles */
 
 nav#categories { float: left; width: 8em; padding: .3em; }
+
+nav#categories ul {
+    list-style: none;
+}
+
+nav#categories a 
+{ 
+font: bold 1.2em "Arial Narrow","Franklin Gothic Medium",Arial; display: block; 
+text-decoration: none; padding: .6em; color: Black; 
+border-bottom: 1px solid silver; 
+} 
+nav#categories a.selected { background-color: #666; color: White; } 
+nav#categories a:hover { background-color: #CCC; } 
+nav#categories a.selected:hover { background-color: #666; } 
 
 /* Styles for basic forms
 -----------------------------------------------------------*/
