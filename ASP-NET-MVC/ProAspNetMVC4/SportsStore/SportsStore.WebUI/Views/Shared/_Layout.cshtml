@@ -7,10 +7,17 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
-<body>
-    @RenderBody()
-
-    @Scripts.Render("~/bundles/jquery")
-    @RenderSection("scripts", required: false)
-</body>
+    <body>
+        <header>
+            <h1 class="title">Sports Store</h1>
+        </header>
+        <nav id="categories">
+            We will put something useful here later
+        </nav>
+        <section id="content">
+            @RenderBody()    
+        </section>
+        @Scripts.Render("~/bundles/jquery")
+        @RenderSection("scripts", required: false)
+    </body>
 </html>

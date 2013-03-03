@@ -9,6 +9,43 @@ header, footer, nav, section {
     display: block;
 }
 
+/* header styles */
+
+header h1.title, DIV.item H3, DIV.item H4, DIV.pager A { 
+font: bold 1em "Arial Narrow", "Franklin Gothic Medium", Arial; 
+}
+header { background-color: #444; border-bottom: 2px solid #111; color: White; } 
+header h1.title { font-size: 2em; padding: .6em; }
+
+/* section content styles */
+
+section#content { border-left: 2px solid gray; margin-left: 9em; padding: 1em; }
+
+div.item { border-top: 1px dotted gray; padding-top: .7em; margin-bottom: .7em; } 
+div.item:first-child { border-top:none; padding-top: 0; } 
+div.item H3 { font-size: 1.3em; margin: 0 0 .25em 0; } 
+div.item H4 { font-size: 1.1em; margin:.4em 0 0 0; } 
+div.pager { 
+    text-align:right; 
+    border-top: 2px solid silver; 
+    padding: .5em 0 0 0; 
+    margin-top: 1em; } 
+div.pager A { 
+    font-size: 1.1em; 
+    color: #666; 
+    text-decoration: none; 
+    padding: 0 .4em 0 .4em; } 
+div.pager A:hover {
+    background-color: Silver;
+} 
+div.pager A.selected {
+     background-color: #353535; 
+     color: White;
+}
+
+/* nav styles */
+
+nav#categories { float: left; width: 8em; padding: .3em; }
 
 /* Styles for basic forms
 -----------------------------------------------------------*/
