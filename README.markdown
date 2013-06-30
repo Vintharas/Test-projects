@@ -3,7 +3,13 @@
   -  HTML5
   -  WPF
   -  Windows Phone 7 (WP7)
-  -  XNA
+  -  GameDev
+     -  XNA
+     -  MonoGame
   -  ASP.NET MVC
   -  Windows 8
+  -  Entity Framework
+  -  JavaScript
+  -  CoffeeScript
+  -  SPA
 
