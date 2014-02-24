@@ -1,15 +1,21 @@
 #Test Projects on:
 
   -  HTML5
-  -  WPF
-  -  Windows Phone 7 (WP7)
+  -  Databases
+    -  Entity Framework
+    -  RavenDB
   -  GameDev
      -  XNA
      -  MonoGame
-  -  ASP.NET MVC
+  -  Mobile Dev
+    -  Windows Phone 7 (WP7)
+    -  Windows Phone 8 (WP8)
+  - MSBuild
+  - WebDev 
+    -  ASP.NET MVC
+    -  JavaScript
+    -  CoffeeScript
+    -  SPA
   -  Windows 8
-  -  Entity Framework
-  -  JavaScript
-  -  CoffeeScript
-  -  SPA
+  -  WPF
 
