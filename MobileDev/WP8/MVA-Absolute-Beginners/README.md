@@ -1,0 +1,1 @@
+Source code and exercises from [MVA Windows Phone 8 Development for absolute beginners](http://www.microsoftvirtualacademy.com/training-courses/windows-phone-8-development-for-absolute-beginners#?fbid=iUkZ4BG3Wto)
